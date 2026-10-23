@@ -1,0 +1,25 @@
+# Build and local dependencies
+node_modules/
+dist/
+*.log
+.DS_Store
+
+# Local environment and credentials
+.env
+.env.*
+!.env.example
+
+# Local visual references and synthetic camera QA
+refs_/
+qa/
+
+# Licensed font binaries are kept locally only
+rsc_/fonts/
+
+# Editorial briefs, agent instructions, and workspaces
+AGENTS.md
+TRANSFIGURACION_CODEX_MASTER.md
+INSTRUCCIONES_GITHUB_PAGES_CODEX.md
+docs/superpowers/
+rsc_/about.rtfd/
+.worktrees/

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transfiguración</title>
+  </head>
+  <body>
+    <main id="experience">
+      <video id="camera" playsinline muted autoplay aria-hidden="true"></video>
+      <div id="sceneShell">
+        <canvas id="output" aria-label="Imagen de cámara transformada"></canvas>
+        <section id="cameraPanel" class="camera-panel" hidden aria-live="polite">
+          <p id="cameraMessage"></p>
+          <button id="cameraAction" type="button" hidden>Permitir cámara</button>
+        </section>
+        <div id="postShell" hidden>
+          <div id="edgeFrame"></div>
+          <button id="mainLogo" class="main-logo" type="button" aria-label="Reiniciar experiencia de cámara"></button>
+          <nav class="global-nav" aria-label="Navegación principal">
+            <button id="aboutButton" type="button"><span>About</span></button>
+            <button id="archiveButton" type="button"><span>Archivo</span></button>
+          </nav>
+          <section id="questionView" class="question-view" aria-label="Pregunta">
+            <form id="questionForm" class="question-form" novalidate>
+              <div id="questionHeading" class="question-heading"></div>
+              <label class="visually-hidden" for="answer">Tu respuesta</label>
+              <textarea id="answer" name="answer" maxlength="333" placeholder="Escribe aquí tu respuesta"></textarea>
+              <div class="question-footer">
+                <p id="confirmation" class="confirmation" role="status" aria-live="polite"></p>
+                <div class="question-actions">
+                  <button id="sendButton" type="submit"><span>enviar</span></button>
+                  <button id="exitButton" type="button"><span>salir</span></button>
+                  <button id="backButton" type="button"><span>volver</span></button>
+                </div>
+              </div>
+            </form>
+          </section>
+          <section id="archiveView" class="archive-view" aria-label="Archivo" hidden>
+            <div id="archiveViewport" class="archive-viewport">
+              <div id="archiveScreen" class="archive-screen">
+                <div class="archive-scene"><div id="archiveWorld" class="archive-world"></div></div>
+              </div>
+            </div>
+            <div class="archive-hud" aria-live="off">
+              <div id="archiveCounter">1/9</div>
+              <div id="archiveCoordinates">X 0 / ±650   Y 0 / ±380   Z 0</div>
+            </div>
+          </section>
+        </div>
+      </div>
+      <div id="aboutLayer" class="about-layer" hidden>
+        <div class="about-backdrop" aria-hidden="true"></div>
+        <section class="about-dialog" role="dialog" aria-modal="true" aria-label="Acerca de Transfiguración">
+          <button id="aboutClose" class="about-close" type="button"><span>cerrar</span><span aria-hidden="true">×</span></button>
+          <div id="aboutLogo" class="about-logo"></div>
+          <div id="aboutCopy" class="about-copy"></div>
+        </section>
+      </div>
+    </main>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

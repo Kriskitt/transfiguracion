@@ -1,0 +1,81 @@
+@font-face { font-family: HaasLight; src: url("../rsc_/fonts/NeueHaasDisplayLight.ttf") format("truetype"); font-weight: 300; font-display: swap; }
+@font-face { font-family: HaasRoman; src: url("../rsc_/fonts/NeueHaasDisplayRoman.ttf") format("truetype"); font-weight: 400; font-display: swap; }
+@font-face { font-family: HaasMedium; src: url("../rsc_/fonts/NeueHaasDisplayMediu.ttf") format("truetype"); font-weight: 500; font-display: swap; }
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body, #experience { width: 100%; height: 100%; margin: 0; overflow: hidden; background: white; }
+body { color: #070707; font-family: HaasRoman, Arial, sans-serif; cursor: url("../rsc_/cursor-01.svg") 18 18, auto; }
+button, textarea { font: inherit; }
+button, a, textarea { cursor: url("../rsc_/cursor-02.svg") 18 18, pointer; }
+button { color: inherit; }
+button:focus-visible, textarea:focus-visible { outline: 2px solid #111; outline-offset: 3px; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+#experience, #sceneShell, #postShell { position: fixed; inset: 0; }
+#sceneShell { background: white; }
+#sceneShell.is-obscured { filter: blur(6px); }
+#output { position: absolute; inset: 0; width: 100%; height: 100%; display: block; background: white; }
+#camera { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+
+.camera-panel { position: absolute; z-index: 5; inset: 0; display: grid; place-content: center; justify-items: center; gap: 19px; background: white; text-align: center; }
+.camera-panel p { max-width: 34ch; margin: 0; font-size: 18px; line-height: 1.35; }
+.camera-panel button { min-height: 42px; padding: 7px 18px; border: 1px solid #111; background: white; font-size: 18px; }
+.camera-panel button:hover { background: black; color: white; }
+
+#postShell { z-index: 2; pointer-events: none; }
+#postShell button, #postShell textarea, #archiveViewport { pointer-events: auto; }
+.edge-frame { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
+.frame-track { fill: none; stroke: #272727; stroke-width: 1.1; vector-effect: non-scaling-stroke; }
+.frame-signal { fill: none; stroke: #050505; stroke-width: 3.4; vector-effect: non-scaling-stroke; }
+.main-logo { position: absolute; z-index: 5; left: 12px; top: 50%; width: clamp(120px, 8vw, 158px); padding: 0; border: 0; background: transparent; transform: translateY(-50%); }
+.main-logo svg { display: block; width: 100%; height: auto; }
+.global-nav { position: absolute; z-index: 5; right: 17px; top: 50%; display: grid; justify-items: end; gap: 1px; transform: translateY(-50%); }
+.global-nav button { border: 0; padding: 0; background: none; font-size: 20px; line-height: 1.16; text-align: right; }
+.global-nav button span, .question-actions button span, .about-close span:first-child { display: inline-block; transform: scaleX(1); transition: transform 180ms ease; }
+.global-nav button span { transform-origin: right center; }
+.global-nav button:hover span, .global-nav button:focus-visible span, .global-nav button[aria-current="page"] span { transform: scaleX(2); text-decoration: underline; text-underline-offset: 2px; }
+
+.question-view { position: absolute; inset: 0; }
+.question-form { position: absolute; left: 50%; top: 29.2%; width: min(54.2vw, 1040px); height: min(35.6vh, 385px); min-height: 320px; transform: translateX(-50%); display: flex; flex-direction: column; border: 1px solid #979797; background: #fff; pointer-events: auto; }
+.question-heading { flex: 0 0 57px; padding: 3px 7px 0; overflow: hidden; }
+.question-heading .experimental-paragraph { width: 100%; }
+.question-heading .experimental-line { justify-content: space-between; }
+.question-form textarea { display: block; flex: 1; min-height: 0; width: calc(100% - 12px); margin: 0 6px; padding: 3px 0; resize: none; border: 1px solid #999; border-radius: 0; background: white; color: #111; font-size: clamp(22px, 1.75vw, 34px); line-height: 1.1; }
+.question-form textarea::placeholder { color: #bebebe; opacity: 1; }
+.question-footer { position: relative; flex: 0 0 64px; display: grid; place-items: center; }
+.question-actions { display: flex; justify-content: center; gap: 12px; }
+.question-actions button { min-width: 124px; height: 36px; border: 1px solid #888; border-radius: 0; background: white; font-size: 23px; line-height: 1; text-decoration: underline; }
+.question-actions button span { transform-origin: center center; }
+.question-actions button:hover span, .question-actions button:focus-visible span { transform: scaleX(2); }
+.question-actions button:disabled { opacity: .55; cursor: url("../rsc_/cursor-01.svg") 18 18, auto; }
+.confirmation { position: absolute; bottom: 52px; left: 50%; margin: 0; transform: translateX(-50%); white-space: nowrap; font-size: 17px; background: white; }
+.confirmation:empty { display: none; }
+
+.archive-view { position: absolute; inset: 0; }
+.archive-viewport { position: absolute; inset: 0; overflow: hidden; touch-action: none; cursor: url("../rsc_/cursor-02.svg") 18 18, grab; }
+.archive-viewport.dragging { cursor: url("../rsc_/cursor-02.svg") 18 18, grabbing; }
+.archive-screen { position: absolute; left: 50%; top: 50%; width: 1920px; height: 1080px; transform-origin: center center; }
+.archive-scene { position: absolute; inset: 0; perspective: 1100px; perspective-origin: 50% 50%; transform-style: preserve-3d; }
+.archive-world { position: absolute; inset: 0; transform-style: preserve-3d; }
+.archive-panel { position: absolute; top: 50%; left: 50%; transform-style: preserve-3d; pointer-events: none; backface-visibility: hidden; }
+.experimental-paragraph { line-height: 1.03; text-align: center; letter-spacing: -.015em; }
+.experimental-line { display: flex; justify-content: center; align-items: baseline; white-space: nowrap; }
+.experimental-word { display: inline-block; flex: none; position: relative; vertical-align: baseline; white-space: nowrap; }
+.experimental-word > span { position: absolute; left: 0; top: 0; display: inline-block; transform-origin: left center; white-space: nowrap; }
+.experimental-space { flex: none; }
+.archive-hud { position: absolute; left: 17px; bottom: 17px; display: grid; gap: 12px; font-size: 18px; line-height: 1.1; pointer-events: none; }
+#archiveCoordinates { white-space: pre; }
+
+.about-layer { position: fixed; z-index: 20; inset: 0; display: grid; place-items: center; }
+.about-backdrop { position: absolute; inset: 0; background: rgba(255,255,255,.75); }
+.about-dialog { position: relative; width: min(565px, 90vw); height: min(100vh, 1080px); overflow-y: auto; overscroll-behavior: contain; padding: 0 22px 32px; border: 1px solid #111; background: #fff; text-align: center; }
+.about-dialog::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(#111,#111) left 0 top 0 / 3px 88px no-repeat, linear-gradient(#111,#111) left 0 top 30% / 3px 52px no-repeat, linear-gradient(#111,#111) left 0 top 56% / 3px 48px no-repeat, linear-gradient(#111,#111) left 0 bottom 9% / 3px 76px no-repeat, linear-gradient(#111,#111) right 0 top 0 / 3px 82px no-repeat, linear-gradient(#111,#111) right 0 top 28% / 3px 54px no-repeat, linear-gradient(#111,#111) right 0 top 58% / 3px 64px no-repeat, linear-gradient(#111,#111) right 0 bottom 8% / 3px 70px no-repeat, linear-gradient(#111,#111) left 20% top 0 / 64px 3px no-repeat, linear-gradient(#111,#111) right 18% top 0 / 58px 3px no-repeat, linear-gradient(#111,#111) left 21% bottom 0 / 67px 3px no-repeat, linear-gradient(#111,#111) right 15% bottom 0 / 73px 3px no-repeat; }
+.about-close { position: sticky; z-index: 2; top: 23px; left: 100%; display: flex; align-items: center; justify-content: space-evenly; width: 127px; height: 36px; margin: 23px 0 0 auto; border: 1px solid #999; background: white; font-size: 19px; line-height: 1; }
+.about-close span:first-child { transform-origin: center; }
+.about-close:hover span:first-child, .about-close:focus-visible span:first-child { transform: scaleX(2); }
+.about-close span:last-child { font-size: 28px; font-family: HaasLight, sans-serif; }
+.about-logo { width: min(377px, 100%); margin: -3px auto 0; }
+.about-logo svg { display: block; width: 100%; height: auto; }
+.about-copy { margin: 48px auto 0; max-width: 520px; font-size: 21px; line-height: 1.41; }
+.about-copy p { margin: 0 0 31px; }
+@media (max-height: 820px) { .about-copy { font-size: 18px; } .question-form { top: 27%; height: 43%; } }
