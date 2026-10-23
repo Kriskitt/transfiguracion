@@ -5,9 +5,9 @@
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }
 html, body, #experience { width: 100%; height: 100%; margin: 0; overflow: hidden; background: white; }
-body { color: #070707; font-family: HaasRoman, Arial, sans-serif; cursor: url("../rsc_/cursor-01.svg") 18 18, auto; }
+body { color: #070707; font-family: HaasRoman, Arial, sans-serif; cursor: url("../rsc_/cursor-01.svg") 7 7, auto; }
 button, textarea { font: inherit; }
-button, a, textarea { cursor: url("../rsc_/cursor-02.svg") 18 18, pointer; }
+button, a, textarea { cursor: url("../rsc_/cursor-02.svg") 7 7, pointer; }
 button { color: inherit; }
 button:focus-visible, textarea:focus-visible { outline: 2px solid #111; outline-offset: 3px; }
 .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
@@ -47,13 +47,13 @@ button:focus-visible, textarea:focus-visible { outline: 2px solid #111; outline-
 .question-actions button { min-width: 124px; height: 36px; border: 1px solid #888; border-radius: 0; background: white; font-size: 23px; line-height: 1; text-decoration: underline; }
 .question-actions button span { transform-origin: center center; }
 .question-actions button:hover span, .question-actions button:focus-visible span { transform: scaleX(2); }
-.question-actions button:disabled { opacity: .55; cursor: url("../rsc_/cursor-01.svg") 18 18, auto; }
+.question-actions button:disabled { opacity: .55; cursor: url("../rsc_/cursor-01.svg") 7 7, auto; }
 .confirmation { position: absolute; bottom: 52px; left: 50%; margin: 0; transform: translateX(-50%); white-space: nowrap; font-size: 17px; background: white; }
 .confirmation:empty { display: none; }
 
 .archive-view { position: absolute; inset: 0; }
-.archive-viewport { position: absolute; inset: 0; overflow: hidden; touch-action: none; cursor: url("../rsc_/cursor-02.svg") 18 18, grab; }
-.archive-viewport.dragging { cursor: url("../rsc_/cursor-02.svg") 18 18, grabbing; }
+.archive-viewport { position: absolute; inset: 0; overflow: hidden; touch-action: none; cursor: url("../rsc_/cursor-02.svg") 7 7, grab; }
+.archive-viewport.dragging { cursor: url("../rsc_/cursor-02.svg") 7 7, grabbing; }
 .archive-screen { position: absolute; left: 50%; top: 50%; width: 1920px; height: 1080px; transform-origin: center center; }
 .archive-scene { position: absolute; inset: 0; perspective: 1100px; perspective-origin: 50% 50%; transform-style: preserve-3d; }
 .archive-world { position: absolute; inset: 0; transform-style: preserve-3d; }
