@@ -5,6 +5,7 @@ import { mkdir, writeFile } from "node:fs/promises";
 const port = Number(process.env.CDP_PORT || 9226);
 const origin = process.env.PREVIEW_ORIGIN || "http://127.0.0.1:4175";
 const prefix = "/transfiguracion/";
+const publicSite = origin.startsWith("https://");
 const tabs = await (await fetch(`http://127.0.0.1:${port}/json/list`)).json();
 const page = tabs.find((tab) => tab.type === "page" && tab.url.startsWith(`${origin}${prefix}`));
 if (!page) throw new Error("No se encontró la vista previa de Pages en Chrome.");
@@ -63,8 +64,18 @@ try {
   await cdp("Network.enable");
   await cdp("Page.enable");
   await cdp("Emulation.setDeviceMetricsOverride", { width: 1920, height: 1080, deviceScaleFactor: 1, mobile: false });
+  const loaded = new Promise((resolve, reject) => {
+    const timeout = setTimeout(() => reject(new Error("La recarga de la página no terminó.")), 15000);
+    const onMessage = (event) => {
+      if (JSON.parse(event.data).method !== "Page.loadEventFired") return;
+      clearTimeout(timeout);
+      socket.removeEventListener("message", onMessage);
+      resolve();
+    };
+    socket.addEventListener("message", onMessage);
+  });
   await cdp("Page.reload", { ignoreCache: true });
-  await waitFor(() => evaluate("document.readyState === 'complete'"), 8000);
+  await loaded;
   assert.equal(await evaluate("location.pathname"), prefix);
   assert.equal(await evaluate("document.querySelector('#cameraAction').hidden"), false);
   assert.equal(await evaluate("document.querySelector('#cameraAction').textContent"), "Permitir cámara");
@@ -78,7 +89,7 @@ try {
   assert.deepEqual(await evaluate("Promise.all(['HaasLight','HaasRoman','HaasMedium'].map(f => document.fonts.load('24px '+f))).then(() => ['HaasLight','HaasRoman','HaasMedium'].map(f => document.fonts.check('24px '+f)))"), [true, true, true]);
   await mkdir("qa", { recursive: true });
   const { data } = await cdp("Page.captureScreenshot", { format: "png", captureBeyondViewport: false });
-  await writeFile("qa/pages-local-question.png", Buffer.from(data, "base64"));
+  await writeFile(`qa/pages-${publicSite ? "public" : "local"}-question.png`, Buffer.from(data, "base64"));
   await click("#archiveButton");
   await waitFor(() => evaluate("!document.querySelector('#archiveView').hidden"), 5000);
   await click("#aboutButton");
@@ -86,7 +97,7 @@ try {
   await click("#aboutClose");
   assert.equal(await evaluate("document.querySelector('#archiveCoordinates').textContent.includes('Z ')"), true);
   assert.deepEqual(errors, []);
-  console.log("Pages preview: prefix, consent, camera lifecycle, fonts, question, archive, About, network and console OK.");
+  console.log(`Pages ${publicSite ? "public site" : "preview"}: prefix, consent, camera lifecycle, fonts, question, archive, About, network and console OK.`);
 } finally {
   socket.close();
 }

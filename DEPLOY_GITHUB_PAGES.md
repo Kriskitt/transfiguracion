@@ -6,6 +6,7 @@
 - Sitio: <https://kriskitt.github.io/transfiguracion/>
 - `main` conserva la versión fuente local. La rama `deploy/github-pages` contiene exclusivamente las adaptaciones para alojamiento público y el workflow de publicación.
 - GitHub Pages utiliza **GitHub Actions** como fuente. Cada push a `deploy/github-pages` ejecuta `.github/workflows/deploy.yml`; también puede iniciarse con `workflow_dispatch`. El artefacto se construye desde `dist/` durante el workflow y no se versiona.
+- El entorno `github-pages` permite desplegar únicamente desde `deploy/github-pages`. GitHub había creado inicialmente una regla para `main`; se reemplazó tras detectar que rechazaba el primer intento del workflow.
 
 ## Ejecutar y verificar
 
@@ -19,6 +20,12 @@ npm run preview
 El `base` de Vite es `/transfiguracion/`. Para una vista previa local, abre `http://localhost:4173/transfiguracion/` (o el puerto que indique Vite). Los módulos, SVG y WOFF2 se resuelven bajo ese prefijo. La navegación de Cámara, Pregunta, Archivo y About ocurre en una sola página, sin rutas profundas del navegador.
 
 La experiencia pública presenta «Permitir cámara» al entrar, antes de llamar a `getUserMedia`. El video y la respuesta del formulario permanecen en el navegador; «enviar» es una confirmación simulada. Al acabar la secuencia, la pista se libera. Una nueva ejecución vuelve a solicitarla si es necesario. GitHub Pages proporciona HTTPS, requisito habitual para permisos de cámara fuera de localhost.
+
+## Comprobaciones realizadas
+
+- `npm ci`, las 15 pruebas de `npm test`, `npm run build` y `npm audit --audit-level=high` finalizaron correctamente en la rama de despliegue.
+- El workflow construyó y publicó el artefacto. La URL HTTPS devolvió HTTP 200 y se comprobó la ruta base `/transfiguracion/`.
+- En Chrome desktop con cámara **sintética**, la URL publicada pasó el recorrido de consentimiento, renderizado WebGL2, cierre de pista al llegar a Pregunta, carga de fuentes, Archivo y About, sin errores de consola ni respuestas HTTP 4xx observadas. Se capturó una imagen local de QA no versionada para comparar el layout.
 
 ## Tipografía y derechos
 
