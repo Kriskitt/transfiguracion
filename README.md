@@ -9,7 +9,7 @@ npm install
 npm run dev
 ```
 
-Abre la URL que indique Vite y concede acceso a la cámara. El reloj empieza cuando llega el primer fotograma válido. Tras unos 20 segundos aparece Pregunta. Si el navegador deniega o no puede abrir la cámara, usa «Permitir cámara» o «Reintentar». Para repetir decisiones gráficas, añade `?seed=ejemplo` a la URL.
+Abre la URL que indique Vite y pulsa «Permitir cámara». El reloj empieza cuando llega el primer fotograma válido. Tras unos 20 segundos aparece Pregunta. Si el navegador deniega o no puede abrir la cámara, usa «Reintentar». Para repetir decisiones gráficas, añade `?seed=ejemplo` a la URL.
 
 ```sh
 npm test
@@ -17,9 +17,9 @@ npm run build
 npm run preview
 ```
 
-`npm run build` genera `dist/`, apto para alojamiento estático en un origen HTTPS. No se han configurado infraestructura ni despliegues. La cámara suele requerir HTTPS fuera de localhost.
+`npm run build` genera `dist/`, apto para alojamiento estático en un origen HTTPS. Esta rama se publica mediante GitHub Actions en [Transfiguración](https://kriskitt.github.io/transfiguracion/); consulta [DEPLOY_GITHUB_PAGES.md](DEPLOY_GITHUB_PAGES.md). La cámara suele requerir HTTPS fuera de localhost.
 
-**Distribución pública:** los TTF comerciales de Neue Haas y las imágenes de referencia quedan fuera de Git. Para compilar esta rama fuente desde un clon limpio, coloca copias con licencia de `NeueHaasDisplayLight.ttf`, `NeueHaasDisplayRoman.ttf` y `NeueHaasDisplayMediu.ttf` en `rsc_/fonts/`. La rama `deploy/github-pages` utiliza una fuente libre de respaldo y puede compilarse sin esos archivos.
+**Distribución pública:** los TTF comerciales de Neue Haas y las imágenes de referencia quedan fuera de Git. Esta rama utiliza Archivo, con licencia SIL OFL, como fuente de respaldo distribuible. Si la fuente Neue Haas está instalada localmente, el navegador puede usarla; el sitio público no la distribuye.
 
 ## Recorrido
 
@@ -42,9 +42,9 @@ npm run preview
 | `src/main.js`, `src/state.js`, `src/timeline.js` | Orquestación, estados y reloj. |
 | `src/camera.js`, `src/composition.js`, `src/renderer.js` | Captura, celdas y WebGL2. |
 | `src/views/`, `src/effects/`, `src/data/` | Archivo/About, logos/marcos/tipografía y contenido. |
-| `rsc_/` | Logos, fuentes y cursores originales. |
-| `refs_/` | Referencias visuales y exploraciones; no se sirven como imagen de la obra. |
-| `tests/`, `scripts/browser-smoke.mjs`, `qa/` | Pruebas de lógica y evidencia visual con cámara simulada. |
+| `rsc_/` | Logos y cursores originales. Los TTF comerciales quedan fuera de Git. |
+| `refs_/` | Referencias visuales y exploraciones locales; no se publican. |
+| `tests/`, `scripts/browser-pages-smoke.mjs` | Pruebas de lógica y humo en la ruta de Pages con cámara simulada. |
 
 ## Límites actuales
 

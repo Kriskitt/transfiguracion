@@ -4,15 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Transfiguración</title>
+    <link rel="icon" type="image/svg+xml" href="/rsc_/trans_logo.svg" />
   </head>
   <body>
     <main id="experience">
       <video id="camera" playsinline muted autoplay aria-hidden="true"></video>
       <div id="sceneShell">
         <canvas id="output" aria-label="Imagen de cámara transformada"></canvas>
-        <section id="cameraPanel" class="camera-panel" hidden aria-live="polite">
-          <p id="cameraMessage"></p>
-          <button id="cameraAction" type="button" hidden>Permitir cámara</button>
+        <section id="cameraPanel" class="camera-panel" aria-live="polite">
+          <p id="cameraMessage">Para comenzar, permite el uso de tu cámara.</p>
+          <button id="cameraAction" type="button">Permitir cámara</button>
         </section>
         <div id="postShell" hidden>
           <div id="edgeFrame"></div>

@@ -265,10 +265,21 @@ function shutdown() {
   renderer?.dispose();
   renderer = null;
 }
+function showStartPrompt() {
+  ++runToken;
+  stopLoop();
+  resetPostInterface();
+  camera.stop();
+  timeline.stop();
+  composition = null;
+  frozenVideoSize = null;
+  if (state.current !== "camera_idle") state.transition("camera_idle");
+  ui.showRetry("Para comenzar, permite el uso de tu cámara.", "Permitir cámara");
+}
 window.addEventListener("pagehide", shutdown);
 window.addEventListener("beforeunload", shutdown);
 window.addEventListener("pageshow", (event) => {
-  if (event.persisted) startExperience();
+  if (event.persisted) showStartPrompt();
 });
 
-startExperience();
+showStartPrompt();

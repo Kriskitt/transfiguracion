@@ -1,6 +1,6 @@
-@font-face { font-family: HaasLight; src: url("../rsc_/fonts/NeueHaasDisplayLight.ttf") format("truetype"); font-weight: 300; font-display: swap; }
-@font-face { font-family: HaasRoman; src: url("../rsc_/fonts/NeueHaasDisplayRoman.ttf") format("truetype"); font-weight: 400; font-display: swap; }
-@font-face { font-family: HaasMedium; src: url("../rsc_/fonts/NeueHaasDisplayMediu.ttf") format("truetype"); font-weight: 500; font-display: swap; }
+@font-face { font-family: HaasLight; src: local("NeueHaasDisplay-Light"), url("@fontsource/archivo/files/archivo-latin-300-normal.woff2") format("woff2"); font-weight: 300; font-display: swap; }
+@font-face { font-family: HaasRoman; src: local("NeueHaasDisplay-Roman"), url("@fontsource/archivo/files/archivo-latin-400-normal.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: HaasMedium; src: local("NeueHaasDisplay-Mediu"), url("@fontsource/archivo/files/archivo-latin-500-normal.woff2") format("woff2"); font-weight: 500; font-display: swap; }
 
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }
