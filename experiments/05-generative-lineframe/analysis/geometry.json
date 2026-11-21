@@ -1,0 +1,385 @@
+{
+  "source": "references/lineframe-05.svg",
+  "sha256": "f896f4038106ad50ff2a29f1749326fb4170d5d82c0b2c6ddf62bd96afc3a40b",
+  "measured": {
+    "viewBox": [
+      0.0,
+      0.0,
+      1920.0,
+      1080.0
+    ],
+    "groupCount": 310,
+    "pathCount": 307,
+    "commandCounts": {
+      "cubic": 1250,
+      "line": 630,
+      "move": 307,
+      "close": 307
+    },
+    "subpathCount": 307,
+    "regularSixSpanPathCount": 302,
+    "cornerOrJoinPathIndices": [
+      98,
+      153,
+      251,
+      252,
+      306
+    ],
+    "templateFamilies": [
+      {
+        "count": 98,
+        "representativePath": 0,
+        "segmentCount": 6
+      },
+      {
+        "count": 83,
+        "representativePath": 158,
+        "segmentCount": 6
+      },
+      {
+        "count": 53,
+        "representativePath": 253,
+        "segmentCount": 6
+      },
+      {
+        "count": 45,
+        "representativePath": 99,
+        "segmentCount": 6
+      },
+      {
+        "count": 11,
+        "representativePath": 154,
+        "segmentCount": 6
+      },
+      {
+        "count": 9,
+        "representativePath": 105,
+        "segmentCount": 6
+      },
+      {
+        "count": 3,
+        "representativePath": 155,
+        "segmentCount": 6
+      },
+      {
+        "count": 1,
+        "representativePath": 98,
+        "segmentCount": 14
+      },
+      {
+        "count": 1,
+        "representativePath": 153,
+        "segmentCount": 16
+      },
+      {
+        "count": 1,
+        "representativePath": 251,
+        "segmentCount": 15
+      },
+      {
+        "count": 1,
+        "representativePath": 252,
+        "segmentCount": 14
+      },
+      {
+        "count": 1,
+        "representativePath": 306,
+        "segmentCount": 9
+      }
+    ],
+    "sides": {
+      "top": {
+        "count": 97,
+        "bounds": [
+          21.888,
+          8.305,
+          1891.592,
+          11.925
+        ],
+        "widthQuantiles": {
+          "0": 19.204,
+          "0.25": 19.204,
+          "0.5": 19.204,
+          "0.75": 19.205,
+          "1": 19.304
+        },
+        "heightQuantiles": {
+          "0": 3.52,
+          "0.25": 3.52,
+          "0.5": 3.52,
+          "0.75": 3.52,
+          "1": 3.62
+        },
+        "centerPitchQuantiles": {
+          "0": 19.199,
+          "0.25": 19.25,
+          "0.5": 19.3,
+          "0.75": 19.3,
+          "1": 19.301
+        }
+      },
+      "right": {
+        "count": 53,
+        "bounds": [
+          1908.975,
+          30.788,
+          1912.495,
+          1052.292
+        ],
+        "widthQuantiles": {
+          "0": 3.52,
+          "0.25": 3.52,
+          "0.5": 3.52,
+          "0.75": 3.52,
+          "1": 3.52
+        },
+        "heightQuantiles": {
+          "0": 19.204,
+          "0.25": 19.204,
+          "0.5": 19.204,
+          "0.75": 19.205,
+          "1": 19.205
+        },
+        "centerPitchQuantiles": {
+          "0": 19.199,
+          "0.25": 19.299,
+          "0.5": 19.3,
+          "0.75": 19.3,
+          "1": 19.301
+        }
+      },
+      "bottom": {
+        "count": 98,
+        "bounds": [
+          18.808,
+          1068.075,
+          1907.812,
+          1071.595
+        ],
+        "widthQuantiles": {
+          "0": 19.204,
+          "0.25": 19.204,
+          "0.5": 19.204,
+          "0.75": 19.205,
+          "1": 19.205
+        },
+        "heightQuantiles": {
+          "0": 3.52,
+          "0.25": 3.52,
+          "0.5": 3.52,
+          "0.75": 3.52,
+          "1": 3.52
+        },
+        "centerPitchQuantiles": {
+          "0": 19.199,
+          "0.25": 19.299,
+          "0.5": 19.3,
+          "0.75": 19.3,
+          "1": 19.301
+        }
+      },
+      "left": {
+        "count": 54,
+        "bounds": [
+          7.405,
+          18.008,
+          11.025,
+          1058.912
+        ],
+        "widthQuantiles": {
+          "0": 3.52,
+          "0.25": 3.52,
+          "0.5": 3.52,
+          "0.75": 3.52,
+          "1": 3.62
+        },
+        "heightQuantiles": {
+          "0": 19.204,
+          "0.25": 19.204,
+          "0.5": 19.204,
+          "0.75": 19.205,
+          "1": 19.205
+        },
+        "centerPitchQuantiles": {
+          "0": 19.199,
+          "0.25": 19.299,
+          "0.5": 19.3,
+          "0.75": 19.3,
+          "1": 19.301
+        }
+      }
+    },
+    "sampledBounds": [
+      7.405,
+      8.305,
+      1912.595,
+      1071.595
+    ],
+    "cubicChordQuantiles": {
+      "0": 0.2,
+      "0.25": 1.14,
+      "0.5": 1.414,
+      "0.75": 3.805,
+      "1": 6.76
+    },
+    "cubicHandleQuantiles": {
+      "0": 0.0,
+      "0.25": 0.854,
+      "0.5": 1.077,
+      "0.75": 1.414,
+      "1": 2.335
+    },
+    "cubicChordDeviationQuantiles": {
+      "0": 0.0,
+      "0.25": 0.199,
+      "0.5": 0.232,
+      "0.75": 0.636,
+      "1": 0.704
+    },
+    "declaredTransforms": 0,
+    "renderStyle": {
+      "fill": "black (SVG default)",
+      "stroke": "none (SVG default)"
+    },
+    "centralEmptyRegion": {
+      "box": [
+        50,
+        50,
+        1870,
+        1030
+      ],
+      "sampledPointCount": 0
+    },
+    "canonicalMotif": {
+      "sourcePathIndex": 0,
+      "center": [
+        1898.21,
+        1069.835
+      ],
+      "bounds": [
+        1888.608,
+        1068.075,
+        1907.812,
+        1071.595
+      ],
+      "segments": [
+        {
+          "type": "C",
+          "points": [
+            [
+              -8.21,
+              -0.435
+            ],
+            [
+              -9.71,
+              -0.635
+            ],
+            [
+              -10.01,
+              -1.135
+            ],
+            [
+              -9.21,
+              -1.435
+            ]
+          ]
+        },
+        {
+          "type": "C",
+          "points": [
+            [
+              -9.21,
+              -1.435
+            ],
+            [
+              -8.21,
+              -1.835
+            ],
+            [
+              -6.41,
+              -1.835
+            ],
+            [
+              -5.01,
+              -1.635
+            ]
+          ]
+        },
+        {
+          "type": "L",
+          "points": [
+            [
+              -5.01,
+              -1.635
+            ],
+            [
+              8.39,
+              0.565
+            ]
+          ]
+        },
+        {
+          "type": "C",
+          "points": [
+            [
+              8.39,
+              0.565
+            ],
+            [
+              9.79,
+              0.765
+            ],
+            [
+              9.99,
+              1.165
+            ],
+            [
+              9.09,
+              1.465
+            ]
+          ]
+        },
+        {
+          "type": "C",
+          "points": [
+            [
+              9.09,
+              1.465
+            ],
+            [
+              8.29,
+              1.765
+            ],
+            [
+              6.69,
+              1.865
+            ],
+            [
+              5.29,
+              1.665
+            ]
+          ]
+        },
+        {
+          "type": "L",
+          "points": [
+            [
+              5.29,
+              1.665
+            ],
+            [
+              -8.21,
+              -0.435
+            ]
+          ]
+        }
+      ]
+    }
+  },
+  "inferredRules": {
+    "status": "Hypotheses from one Illustrator export, not a proven authoring sequence",
+    "motif": "A short tapered slanted capsule is reused by translation and quarter-turns; six exceptional paths resolve the corners",
+    "layout": "Four near-periodic edge runs preserve a vast empty center; the 310 groups do not imply 310 distinct designs",
+    "variation": "Correlated changes to cadence, length and bend can vary the border without scattering marks into the center"
+  }
+}

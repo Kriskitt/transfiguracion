@@ -1,4 +1,4 @@
-import { MUTATIONS, REFERENCE_SIZE, VISUAL } from "./config.js";
+import { REFERENCE_SIZE, VISUAL } from "./config.js";
 import { clampSourceRect, fitCoverSource, sourceForDest } from "./geometry.js";
 
 export class CompositionController {
@@ -12,6 +12,8 @@ export class CompositionController {
     this.cover = { x: 0, y: 0, width: 1, height: 1 };
     this.stage1Blur = 1;
     this.stage2Level = 0;
+    this.occurrence = null;
+    this.distortedHalf = 0;
   }
 
   updateFrame(videoWidth, videoHeight, outputWidth, outputHeight) {
@@ -46,14 +48,15 @@ export class CompositionController {
   }
 
   getCells(stage, localTime) {
-    if (stage.id !== this.stageId) {
+    if (stage.id !== this.stageId || stage.occurrence !== this.occurrence) {
       this.stageId = stage.id;
+      this.occurrence = stage.occurrence;
       this.mutationIndex = 0;
       if (stage.id === 2) this.stage2Level = 0;
       this.buildStage(stage.id);
     }
 
-    this.applyDueMutations(stage.id, localTime);
+    this.applyDueMutations(stage.id, localTime, stage.duration);
     return this.cells;
   }
 
@@ -64,36 +67,41 @@ export class CompositionController {
     if (stageId === 3) this.cells = this.createStage3();
   }
 
-  applyDueMutations(stageId, localTime) {
-    const schedule = this.getSchedule(stageId);
+  applyDueMutations(stageId, localTime, duration) {
+    const schedule = this.getSchedule(stageId, duration);
     while (schedule[this.mutationIndex] <= localTime) {
       this.mutate(stageId);
       this.mutationIndex += 1;
     }
   }
 
-  getSchedule(stageId) {
-    if (stageId === 1) return MUTATIONS.stage1;
-    if (stageId === 2) return MUTATIONS.stage2;
-    if (stageId === 3) return MUTATIONS.stage3;
+  getSchedule(stageId, duration = 3000) {
+    if (stageId === 1) return [0.25, 0.5, 0.75].map(f => f * duration);
+    if (stageId === 2) return Array.from(
+      { length: Math.floor((duration - 1) / VISUAL.stage2EventIntervalMs) },
+      (_, index) => (index + 1) * VISUAL.stage2EventIntervalMs,
+    );
+    if (stageId === 3) return [0.25, 0.5, 0.75].map(f => f * duration);
     return [];
   }
 
   mutate(stageId) {
     if (stageId === 1) {
+      this.distortedHalf = 1 - this.distortedHalf;
       this.stage1Blur = this.random.range(...VISUAL.stage1BlurRange);
       this.cells = this.createStage1();
       return;
     }
 
     if (stageId === 2) {
-      this.stage2Level = Math.min(3, this.stage2Level + 1);
+      this.stage2Level = Math.min(4, this.stage2Level + 1);
       this.cells = this.createStage2();
       return;
     }
 
     if (stageId === 3) {
-      this.cells = this.cells.map((cell) => {
+      this.cells = this.cells.map((cell, index) => {
+        if (index === 0) return cell;
         if (!this.random.chance(VISUAL.collageMutationChance)) return cell;
         const dest = {
           ...cell.dest,
@@ -124,15 +132,12 @@ export class CompositionController {
     };
 
     return [
-      this.createCell(
-        top,
-        sourceForDest(top, this.cover, this.output.width, this.output.height),
-        this.scaledBlurPx(this.stage1Blur),
-      ),
+        this.createCell(top, sourceForDest(top, this.cover, this.output.width, this.output.height),
+          this.distortedHalf === 0 ? this.scaledBlurPx(this.stage1Blur) : 0),
       this.createCell(
         bottom,
         sourceForDest(bottom, this.cover, this.output.width, this.output.height),
-        0,
+        this.distortedHalf === 1 ? this.scaledBlurPx(this.stage1Blur) : 0,
       ),
     ];
   }
@@ -147,7 +152,7 @@ export class CompositionController {
     const priority = (index) => (index * 0.61803398875 + 0.31) % 1;
     const revealOrder = Array.from({ length: count }, (_, index) => index)
       .sort((a, b) => priority(a) - priority(b));
-    const altered = new Set(revealOrder.slice(0, Math.round(count * (this.stage2Level + 1) / 4)));
+    const altered = new Set(revealOrder.slice(0, Math.round(count * (this.stage2Level + 1) / 5)));
 
     for (let row = 0; row < rows; row += 1) {
       for (let column = 0; column < columns; column += 1) {
@@ -174,9 +179,9 @@ export class CompositionController {
   }
 
   createStage3() {
-    return Array.from({ length: VISUAL.collageFragments }, (_, index) =>
+    return [this.createCell(this.fullDest(), null, 0), ...Array.from({ length: VISUAL.collageFragments }, (_, index) =>
       this.createCollageFragment(index),
-    );
+    )];
   }
 
   createCollageFragment(index) {

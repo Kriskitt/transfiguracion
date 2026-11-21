@@ -27,3 +27,14 @@ test("invalid state jumps are refused and a permission error can retry", () => {
   assert.equal(app.transition("camera_permission"), true);
   assert.equal(app.current, "camera_permission");
 });
+
+test("video always returns to Quest after opening from Replies", () => {
+  const app = new AppState();
+  for (const step of ['camera_permission', 'camera_running', 'camera_finalizing', 'question', 'archive']) {
+    assert.equal(app.transition(step), true);
+  }
+  assert.equal(app.openAbout(), true);
+  assert.equal(app.closeAbout(), true);
+  assert.equal(app.transition('video'), true);
+  assert.equal(app.transition('question'), true);
+});

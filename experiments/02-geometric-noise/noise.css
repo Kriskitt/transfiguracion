@@ -1,0 +1,44 @@
+:root { font-family: Arial, Helvetica, sans-serif; color: #111; background: #f1f1f1; }
+* { box-sizing: border-box; }
+html, body { width: 100%; height: 100%; margin: 0; }
+button, input, select { font: inherit; }
+button, select, input[type="text"] { border: 1px solid #b8b8b8; background: #fff; border-radius: 0; color: #111; }
+button { padding: 9px 13px; cursor: pointer; white-space: nowrap; }
+button:hover { background: #111; color: #fff; border-color: #111; }
+button:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid #111; outline-offset: 2px; }
+.app { min-height: 100%; height: 100%; display: flex; flex-direction: column; }
+.controls { display: flex; align-items: end; flex-wrap: wrap; gap: 16px 22px; padding: 16px 24px; background: #fff; border-bottom: 1px solid #d8d8d8; }
+.identity { display: flex; flex-direction: column; gap: 4px; min-width: 190px; padding-bottom: 1px; }
+.identity strong { font-size: 17px; font-weight: 600; letter-spacing: -.02em; }
+.eyebrow, .field span, .compare-toggle, figcaption, #status { font-size: 10px; text-transform: uppercase; letter-spacing: .1em; }
+.eyebrow { color: #777; }
+.control-group { display: flex; align-items: end; gap: 10px; }
+.field { display: flex; flex-direction: column; gap: 7px; white-space: nowrap; }
+.field input[type="text"], .field select { height: 34px; padding: 0 9px; }
+.seed-field input { width: 140px; }
+.field select { min-width: 136px; }
+.field input[type="range"] { width: 105px; height: 34px; margin: 0; accent-color: #111; }
+.compare-toggle { display: flex; align-items: center; min-height: 34px; gap: 5px; white-space: nowrap; cursor: pointer; }
+.compare-toggle input { margin: 0; accent-color: #111; }
+.stage { min-height: 0; flex: 1; display: flex; justify-content: center; align-items: center; gap: 14px; padding: 14px; overflow: hidden; }
+.panel { position: relative; display: flex; align-items: center; justify-content: center; min-width: 0; min-height: 0; margin: 0; }
+.panel[hidden] { display: none; }
+figcaption { position: absolute; bottom: calc(100% + 6px); left: 0; color: #666; white-space: nowrap; }
+figcaption span { margin-left: 10px; color: #999; }
+.artboard { flex: none; overflow: hidden; background: #fff; box-shadow: 0 0 0 1px #ddd; }
+.artboard canvas, .artboard img { display: block; width: 100%; height: 100%; }
+.artboard img { object-fit: contain; }
+#status { position: absolute; bottom: 6px; left: 24px; margin: 0; color: #555; }
+@media (max-width: 900px) {
+  .controls { padding: 12px; gap: 10px 16px; }
+  .identity { min-width: 100%; }
+  .stage { gap: 8px; padding: 10px; }
+  .field input[type="range"] { width: 95px; }
+}
+@media (max-width: 550px) {
+  .controls { align-items: center; }
+  .control-group { flex-wrap: wrap; }
+  .seed-field input { width: 120px; }
+  .field select { min-width: 120px; }
+  .stage.comparing { align-items: center; }
+}

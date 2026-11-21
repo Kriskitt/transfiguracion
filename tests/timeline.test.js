@@ -1,15 +1,16 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { getStageAt, Timeline } from "../src/timeline.js";
+import { buildCameraSequence, getStageAt, Timeline } from "../src/timeline.js";
+import { createRandom } from "../src/random.js";
 
-test("the six visual phases cut at their specified boundaries and end at 20 seconds", () => {
-  for (const [time, expected] of [
-    [0, 0], [999, 0], [1000, 1], [3999, 1], [4000, 2],
-    [8999, 2], [9000, 3], [15999, 3], [16000, 4],
-    [17999, 4], [18000, 5], [19999, 5], [20000, 6],
-  ]) {
-    assert.equal(getStageAt(time).id, expected, `at ${time} ms`);
+test("seeded phases cut exactly and end at 24 seconds", () => {
+  const stages = buildCameraSequence(createRandom('boundaries'));
+  assert.equal(getStageAt(0, stages).id, 1);
+  for (const stage of stages) {
+    assert.equal(getStageAt(stage.start, stages).occurrence, stage.occurrence);
+    assert.equal(getStageAt(stage.start + stage.duration - .01, stages).occurrence, stage.occurrence);
   }
+  assert.equal(getStageAt(24000, stages).id, 6);
 });
 
 test("timeline starts only when requested and uses elapsed monotonic time", () => {

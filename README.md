@@ -1,53 +1,37 @@
-# Transfiguración
+# Transfiguración V2.1
 
-Obra web de cámara y archivo tipográfico. La captura y el procesamiento ocurren localmente en el navegador. La aplicación usa Vite, JavaScript vanilla, CSS y WebGL2; no tiene servidor de aplicación, grabación ni persistencia de respuestas.
+Obra web interactiva de cámara, pregunta, archivo tipográfico y videoarte. La captura, los efectos y las respuestas de la visita permanecen en el navegador; no hay backend, grabación ni envío de imágenes o textos.
 
-## Iniciar
+## Ejecutar
 
 ```sh
 npm install
 npm run dev
-```
-
-Abre la URL que indique Vite y concede acceso a la cámara. El reloj empieza cuando llega el primer fotograma válido. Tras unos 20 segundos aparece Pregunta. Si el navegador deniega o no puede abrir la cámara, usa «Permitir cámara» o «Reintentar». Para repetir decisiones gráficas, añade `?seed=ejemplo` a la URL.
-
-```sh
 npm test
 npm run build
 npm run preview
 ```
 
-`npm run build` genera `dist/`, apto para alojamiento estático en un origen HTTPS. No se han configurado infraestructura ni despliegues. La cámara suele requerir HTTPS fuera de localhost.
-
-**Distribución pública:** los TTF comerciales de Neue Haas y las imágenes de referencia quedan fuera de Git. Para compilar esta rama fuente desde un clon limpio, coloca copias con licencia de `NeueHaasDisplayLight.ttf`, `NeueHaasDisplayRoman.ttf` y `NeueHaasDisplayMediu.ttf` en `rsc_/fonts/`. La rama `deploy/github-pages` utiliza una fuente libre de respaldo y puede compilarse sin esos archivos.
+Abre la URL de Vite y pulsa **Permitir cámara**. En un servidor distinto de localhost se requiere HTTPS para usar la cámara. `?seed=ejemplo` reproduce el orden de fases y la geometría generativa; la imagen de la cámara sigue siendo impredecible. La compilación estática se genera en `dist/`, con rutas relativas. La rama `deploy/github-pages` publica el sitio mediante GitHub Actions en [Transfiguración](https://kriskitt.github.io/transfiguracion/); la rama fuente `main` conserva las fuentes locales con licencia fuera de Git.
 
 ## Recorrido
 
-1. **Cámara:** imagen completa, desenfoque y división, mosaico, collage irregular; al segundo 16 se congela la textura y se libera la pista. Inversión y sobreexposición llevan a Pregunta sin pantalla intermedia.
-2. **Pregunta:** escribe hasta 333 caracteres o deja la respuesta vacía. «enviar» confirma una simulación y abre Archivo; «salir» lo abre de inmediato; «volver» o el logo reinician Cámara. About abre un modal sin perder la respuesta escrita.
-3. **Archivo:** la rueda/trackpad o las teclas de navegación recorren la profundidad Z; el arrastre con botón/puntero mueve X/Y dentro de límites. «Archivo» activo conserva la posición actual. El logo reinicia Cámara.
-4. **About:** se superpone a Pregunta/Archivo, conserva la posición del fondo y se cierra con «cerrar» o Escape.
+1. **Permiso:** solicita solo video. Si se deniega, falta una cámara o el navegador no soporta captura/WebGL2, muestra una explicación y una acción de reintento.
+2. **CameraCapture:** 24 segundos desde el primer fotograma válido. Fase 1 horizontal; grupos A y B con fases 1, 2 o 3, y grupo C con fases 2 o 3; tratamiento final blanco negativo sobre la última composición. **Saltar** procesa el fotograma disponible y abre Quest. **Guardar** descarga un PNG del canvas sin controles. La pista se libera al entrar en la fase final.
+3. **Quest:** pregunta «¿Qué existe en el futuro que imaginas?», respuesta opcional de hasta 333 caracteres. **Enviar** añade la respuesta no vacía al archivo de esta visita; **Archivo** entra sin enviarla; **Volver** y el logo reinician el flujo de cámara.
+4. **Replies:** nueve textos de ejemplo más las respuestas de la visita. Escritorio: rueda/trackpad para Z y arrastre para X/Y, sin filtrado de planos distantes. Móvil: composición tipográfica desplazable verticalmente sin navegación Z.
+5. **About:** modal sobre Quest o Replies; cierre con botón o Escape. **Ver videoarte** abre el WebM local. La página de video usa línea de tiempo con búsqueda, pausa/reproducción y cierre siempre hacia Quest.
 
-## Editar contenido y ritmo
+Los textos añadidos viven solo en memoria y desaparecen al recargar. Los archivos de `experiments/` son previews independientes; el adaptador de Vite reutiliza sus funciones generadoras sin ejecutar esos previews dentro de la aplicación.
 
-- Pregunta definitiva: sustituir la constante **`QUESTION_TEXT`** en `src/config.js`. El valor actual está marcado como provisional.
-- Textos de ejemplo del Archivo: `src/data/archive.js`. No se añade la respuesta del visitante al archivo.
-- Texto de About: `src/data/about.js`; se transcribió de la referencia visual porque `rsc_/about.rtfd/TXT.rtf` contiene instrucciones.
-- Tiempos, número de columnas y filas, blur y collage: `src/config.js`. Lógica de composición: `src/composition.js`.
+## Verificación local
 
-## Estructura
+`npm test` cubre reloj, secuencia sembrada, composición, cámara y repositorio. `node scripts/browser-v2.mjs` usa Chrome CDP en `127.0.0.1:9223` con cámara simulada y el servidor Vite en `127.0.0.1:5173`; deja capturas en `qa/v2/`. Para iniciarlo en macOS:
 
-| Ruta | Función |
-| --- | --- |
-| `src/main.js`, `src/state.js`, `src/timeline.js` | Orquestación, estados y reloj. |
-| `src/camera.js`, `src/composition.js`, `src/renderer.js` | Captura, celdas y WebGL2. |
-| `src/views/`, `src/effects/`, `src/data/` | Archivo/About, logos/marcos/tipografía y contenido. |
-| `rsc_/` | Logos, fuentes y cursores originales. |
-| `refs_/` | Referencias visuales y exploraciones; no se sirven como imagen de la obra. |
-| `tests/`, `scripts/browser-smoke.mjs`, `qa/` | Pruebas de lógica y evidencia visual con cámara simulada. |
+```sh
+npm run dev -- --host 127.0.0.1
+'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless=new --use-fake-device-for-media-stream --use-fake-ui-for-media-stream --remote-debugging-port=9223 --user-data-dir=/tmp/transf-v2-chrome 'http://127.0.0.1:5173/?seed=qa-v2'
+node scripts/browser-v2.mjs
+```
 
-## Límites actuales
-
-Requiere WebGL2 y permiso de cámara. La composición es desktop-first; una adaptación final para móvil/tablet queda fuera de este encargo. La respuesta solo vive en el campo hasta salir de Pregunta: «enviar» muestra una confirmación simulada, sin transmisión ni almacenamiento. El aspecto con cámara física sigue pendiente de revisión local por el equipo artístico.
-
-Para esa revisión, abre `npm run dev` en un desktop con cámara física y WebGL2; concede permiso, observa los seis tramos hasta Pregunta y confirma que el indicador físico de cámara se apaga cerca del segundo 16. Repite con `?seed=revision`, cambia el tamaño de la ventana durante el mosaico y el collage, abre/cierra About, recorre Archivo con rueda y arrastre, y prueba «volver»/logo para iniciar otra captura. Después deniega el permiso en el navegador y comprueba el botón de reintento. Las capturas de `qa/` proceden de una webcam sintética de Chrome y sirven para comparar layout, no calidad fotográfica.
+La webcam sintética de Chrome verifica el flujo, no el aspecto de una captura física. Revisa con una cámara real el carácter del desenfoque, los fragmentos, la exposición final y el rendimiento en el navegador de exhibición.

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Generative Ornament — Transfiguración</title>
+  <link rel="stylesheet" href="./ornament.css">
+  <script type="module" src="./ornament.js"></script>
+</head>
+<body>
+  <main class="app">
+    <header class="controls" aria-label="Ornament controls">
+      <div class="identity">
+        <span class="eyebrow">TRANSFIGURACIÓN / EXPERIMENT 06</span>
+        <strong>Generative ornament</strong>
+      </div>
+      <div class="control-group">
+        <label class="field seed-field" for="seed"><span>Random seed</span><input id="seed" type="text" value="reference" spellcheck="false" autocomplete="off"></label>
+        <button id="regenerate" type="button">Regenerate</button>
+      </div>
+      <div class="control-group sliders">
+        <label class="field" for="spacing"><span>Motif cadence</span><input id="spacing" type="range" min="0" max="1" step="0.01" value="0.5"></label>
+        <label class="field" for="bead"><span>Rosette scale</span><input id="bead" type="range" min="0" max="1" step="0.01" value="0.5"></label>
+        <label class="field" for="inset"><span>Frame inset</span><input id="inset" type="range" min="0" max="1" step="0.01" value="0.5"></label>
+      </div>
+      <div class="control-group">
+        <label class="field" for="preview"><span>Responsive preview</span><select id="preview"><option value="live">Live</option><option value="desktop">1920 × 1080</option><option value="tablet">1024 × 768</option><option value="mobile">390 × 844</option></select></label>
+        <label class="compare-toggle" for="comparison"><input id="comparison" type="checkbox"><span>Original / Generated</span></label>
+      </div>
+    </header>
+    <section id="stage" class="stage" aria-label="Ornament preview">
+      <figure id="original-panel" class="panel" hidden>
+        <figcaption>Original SVG · 1920 × 1080</figcaption>
+        <div id="original-frame" class="artboard"><img src="./references/ornament-06.svg" alt="Unmodified ornament artwork"></div>
+      </figure>
+      <figure class="panel">
+        <figcaption>Generated <span id="count"></span></figcaption>
+        <div id="generated-frame" class="artboard"><svg id="generated" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Procedurally generated ornament"></svg></div>
+      </figure>
+    </section>
+  </main>
+</body>
+</html>

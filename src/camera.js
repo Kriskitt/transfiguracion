@@ -115,7 +115,7 @@ export class CameraController {
     if (name === "NotAllowedError" || name === "SecurityError") {
       return this.createPublicError(
         "DENIED",
-        "No se pudo usar la cámara. Revisa el permiso del navegador e inténtalo de nuevo.",
+        "No se pudo usar la cámara. Si está bloqueada, habilítala en la configuración del navegador y reintenta.",
       );
     }
     if (name === "NotFoundError" || name === "OverconstrainedError") {

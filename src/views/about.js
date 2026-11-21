@@ -1,6 +1,5 @@
 import aboutLogoMarkup from "../../rsc_/trans_about_logo.svg?raw";
 import { aboutParagraphs } from "../data/about.js";
-import { createAnimatedLogo } from "../effects/logo.js";
 
 export class AboutView {
   constructor(root, random, onRequestClose) {
@@ -13,7 +12,7 @@ export class AboutView {
       paragraph.textContent = text;
       return paragraph;
     }));
-    this.logo = createAnimatedLogo(this.logoContainer, aboutLogoMarkup, "about", random);
+    this.logoContainer.innerHTML = aboutLogoMarkup;
     this.focusReturn = null;
     this.onRequestClose = onRequestClose;
     this.onKeyDown = (event) => {
@@ -22,8 +21,12 @@ export class AboutView {
         this.onRequestClose();
       }
       if (event.key === "Tab" && !this.root.hidden) {
-        event.preventDefault();
-        this.closeButton.focus();
+        const link = this.root.querySelector('#aboutVideo');
+        if (event.shiftKey && document.activeElement === this.closeButton) {
+          event.preventDefault(); link.focus();
+        } else if (!event.shiftKey && document.activeElement === link) {
+          event.preventDefault(); this.closeButton.focus();
+        }
       }
     };
     this.closeButton.addEventListener("click", this.onRequestClose);
@@ -33,7 +36,6 @@ export class AboutView {
   open(opener) {
     this.focusReturn = opener;
     this.root.hidden = false;
-    this.logo.play();
     this.closeButton.focus();
   }
 
@@ -46,6 +48,5 @@ export class AboutView {
   dispose() {
     this.closeButton.removeEventListener("click", this.onRequestClose);
     window.removeEventListener("keydown", this.onKeyDown);
-    this.logo.dispose();
   }
 }

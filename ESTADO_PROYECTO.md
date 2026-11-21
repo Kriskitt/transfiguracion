@@ -1,3 +1,9 @@
+# Estado actual: Transfiguración V2.1
+
+Actualizado: 21 de noviembre de 2026. La aplicación integra pantalla de permiso, CameraCapture de 24 s con grupos A/B/C y preservación de la última composición, Quest, Replies desktop XYZ y móvil vertical, About y Video. Véanse [README.md](README.md) e [IMPLEMENTACION_V2_CODEX.md](IMPLEMENTACION_V2_CODEX.md) para ejecución, arquitectura, pruebas y límites. El texto siguiente documenta la entrega V1.
+
+---
+
 # Estado del proyecto — Transfiguración
 
 Actualizado: 22 de octubre de 2026. Implementación integral de la experiencia de cámara, Pregunta, Archivo y About. Aplicación estática Vite + JavaScript vanilla + WebGL2; sin backend ni despliegue.

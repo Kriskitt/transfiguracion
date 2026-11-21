@@ -1,0 +1,1116 @@
+{
+  "source": "references/ornament-06.svg",
+  "sha256": "10634ab280049ce0b099a486743c03741c9a422650d033bfced5d232385dc303",
+  "measured": {
+    "viewBox": [
+      0.0,
+      0.0,
+      1920.0,
+      1080.0
+    ],
+    "groupCount": 810,
+    "pathCount": 806,
+    "commandCounts": {
+      "cubic": 20956,
+      "line": 2418,
+      "move": 806,
+      "close": 806
+    },
+    "subpathCount": 806,
+    "regularMotifCount": 798,
+    "clippedCornerPathIndices": [
+      798,
+      799,
+      800,
+      801,
+      802,
+      803,
+      804,
+      805
+    ],
+    "clippedPathCount": 8,
+    "clipPathCount": 8,
+    "definitionPolygonCount": 8,
+    "clipUseCount": 8,
+    "clipPolygons": [
+      {
+        "id": "SVGID_1_",
+        "points": [
+          [
+            44.3,
+            82.0
+          ],
+          [
+            26.2,
+            64.0
+          ],
+          [
+            26.2,
+            82.0
+          ]
+        ],
+        "bounds": [
+          26.2,
+          64.0,
+          44.3,
+          82.0
+        ]
+      },
+      {
+        "id": "SVGID_00000054967013552478884070000013298323919734546854_",
+        "points": [
+          [
+            44.3,
+            82.0
+          ],
+          [
+            26.2,
+            64.0
+          ],
+          [
+            44.3,
+            64.0
+          ]
+        ],
+        "bounds": [
+          26.2,
+          64.0,
+          44.3,
+          82.0
+        ]
+      },
+      {
+        "id": "SVGID_00000043446849066988666440000011207326237219552655_",
+        "points": [
+          [
+            1875.7,
+            82.0
+          ],
+          [
+            1893.8,
+            64.0
+          ],
+          [
+            1875.7,
+            64.0
+          ]
+        ],
+        "bounds": [
+          1875.7,
+          64.0,
+          1893.8,
+          82.0
+        ]
+      },
+      {
+        "id": "SVGID_00000092414682470373522850000013991840430641449875_",
+        "points": [
+          [
+            1875.7,
+            82.0
+          ],
+          [
+            1893.8,
+            64.0
+          ],
+          [
+            1893.8,
+            82.0
+          ]
+        ],
+        "bounds": [
+          1875.7,
+          64.0,
+          1893.8,
+          82.0
+        ]
+      },
+      {
+        "id": "SVGID_00000138563648585870226740000009127465272281426315_",
+        "points": [
+          [
+            1875.7,
+            998.0
+          ],
+          [
+            1893.8,
+            1016.0
+          ],
+          [
+            1893.8,
+            998.0
+          ]
+        ],
+        "bounds": [
+          1875.7,
+          998.0,
+          1893.8,
+          1016.0
+        ]
+      },
+      {
+        "id": "SVGID_00000018936916681127560920000012286329733812990655_",
+        "points": [
+          [
+            1875.7,
+            998.0
+          ],
+          [
+            1893.8,
+            1016.0
+          ],
+          [
+            1875.7,
+            1016.0
+          ]
+        ],
+        "bounds": [
+          1875.7,
+          998.0,
+          1893.8,
+          1016.0
+        ]
+      },
+      {
+        "id": "SVGID_00000017506324212625271570000005540633756322567574_",
+        "points": [
+          [
+            44.3,
+            998.0
+          ],
+          [
+            26.2,
+            1016.0
+          ],
+          [
+            44.3,
+            1016.0
+          ]
+        ],
+        "bounds": [
+          26.2,
+          998.0,
+          44.3,
+          1016.0
+        ]
+      },
+      {
+        "id": "SVGID_00000116944114807764353040000016535478350731342250_",
+        "points": [
+          [
+            44.3,
+            998.0
+          ],
+          [
+            26.2,
+            1016.0
+          ],
+          [
+            26.2,
+            998.0
+          ]
+        ],
+        "bounds": [
+          26.2,
+          998.0,
+          44.3,
+          1016.0
+        ]
+      }
+    ],
+    "unusedClipCssClasses": [
+      "st1",
+      "st2",
+      "st3",
+      "st4",
+      "st5",
+      "st6",
+      "st7",
+      "st8"
+    ],
+    "templateFamilies": [
+      {
+        "count": 100,
+        "representativePath": 137,
+        "segmentCount": 29
+      },
+      {
+        "count": 100,
+        "representativePath": 536,
+        "segmentCount": 29
+      },
+      {
+        "count": 98,
+        "representativePath": 532,
+        "segmentCount": 29
+      },
+      {
+        "count": 97,
+        "representativePath": 133,
+        "segmentCount": 29
+      },
+      {
+        "count": 68,
+        "representativePath": 136,
+        "segmentCount": 29
+      },
+      {
+        "count": 68,
+        "representativePath": 535,
+        "segmentCount": 29
+      },
+      {
+        "count": 51,
+        "representativePath": 3,
+        "segmentCount": 29
+      },
+      {
+        "count": 51,
+        "representativePath": 402,
+        "segmentCount": 29
+      },
+      {
+        "count": 48,
+        "representativePath": 0,
+        "segmentCount": 29
+      },
+      {
+        "count": 48,
+        "representativePath": 399,
+        "segmentCount": 29
+      },
+      {
+        "count": 34,
+        "representativePath": 1,
+        "segmentCount": 29
+      },
+      {
+        "count": 34,
+        "representativePath": 400,
+        "segmentCount": 29
+      },
+      {
+        "count": 1,
+        "representativePath": 140,
+        "segmentCount": 29
+      },
+      {
+        "count": 1,
+        "representativePath": 798,
+        "segmentCount": 29
+      },
+      {
+        "count": 1,
+        "representativePath": 799,
+        "segmentCount": 29
+      },
+      {
+        "count": 1,
+        "representativePath": 800,
+        "segmentCount": 29
+      },
+      {
+        "count": 1,
+        "representativePath": 801,
+        "segmentCount": 29
+      },
+      {
+        "count": 1,
+        "representativePath": 802,
+        "segmentCount": 29
+      },
+      {
+        "count": 1,
+        "representativePath": 803,
+        "segmentCount": 29
+      },
+      {
+        "count": 1,
+        "representativePath": 804,
+        "segmentCount": 29
+      },
+      {
+        "count": 1,
+        "representativePath": 805,
+        "segmentCount": 29
+      }
+    ],
+    "sides": {
+      "top": {
+        "count": 266,
+        "bounds": [
+          44.362,
+          63.95,
+          1875.838,
+          81.987
+        ],
+        "widthQuantiles": {
+          "0": 6.826,
+          "0.25": 6.875,
+          "0.5": 6.875,
+          "0.75": 6.876,
+          "1": 6.876
+        },
+        "heightQuantiles": {
+          "0": 18.037,
+          "0.25": 18.037,
+          "0.5": 18.037,
+          "0.75": 18.037,
+          "1": 18.037
+        },
+        "centerPitchQuantiles": {
+          "0": 6.799,
+          "0.25": 6.899,
+          "0.5": 6.9,
+          "0.75": 6.9,
+          "1": 6.925
+        }
+      },
+      "right": {
+        "count": 133,
+        "bounds": [
+          1875.813,
+          82.162,
+          1893.85,
+          998.038
+        ],
+        "widthQuantiles": {
+          "0": 18.037,
+          "0.25": 18.037,
+          "0.5": 18.037,
+          "0.75": 18.037,
+          "1": 18.037
+        },
+        "heightQuantiles": {
+          "0": 6.874,
+          "0.25": 6.874,
+          "0.5": 6.875,
+          "0.75": 6.875,
+          "1": 6.876
+        },
+        "centerPitchQuantiles": {
+          "0": 6.799,
+          "0.25": 6.899,
+          "0.5": 6.9,
+          "0.75": 6.9,
+          "1": 6.901
+        }
+      },
+      "bottom": {
+        "count": 266,
+        "bounds": [
+          44.163,
+          998.013,
+          1875.637,
+          1016.05
+        ],
+        "widthQuantiles": {
+          "0": 6.874,
+          "0.25": 6.875,
+          "0.5": 6.875,
+          "0.75": 6.876,
+          "1": 6.876
+        },
+        "heightQuantiles": {
+          "0": 18.037,
+          "0.25": 18.037,
+          "0.5": 18.037,
+          "0.75": 18.037,
+          "1": 18.037
+        },
+        "centerPitchQuantiles": {
+          "0": 6.799,
+          "0.25": 6.899,
+          "0.5": 6.9,
+          "0.75": 6.9,
+          "1": 6.901
+        }
+      },
+      "left": {
+        "count": 133,
+        "bounds": [
+          26.15,
+          81.962,
+          44.187,
+          997.838
+        ],
+        "widthQuantiles": {
+          "0": 18.037,
+          "0.25": 18.037,
+          "0.5": 18.037,
+          "0.75": 18.037,
+          "1": 18.037
+        },
+        "heightQuantiles": {
+          "0": 6.874,
+          "0.25": 6.874,
+          "0.5": 6.875,
+          "0.75": 6.875,
+          "1": 6.876
+        },
+        "centerPitchQuantiles": {
+          "0": 6.799,
+          "0.25": 6.899,
+          "0.5": 6.9,
+          "0.75": 6.9,
+          "1": 6.901
+        }
+      }
+    },
+    "sampledBounds": [
+      26.15,
+      63.95,
+      1893.85,
+      1016.05
+    ],
+    "cubicChordQuantiles": {
+      "0": 0.361,
+      "0.25": 1.5,
+      "0.5": 1.603,
+      "0.75": 2.202,
+      "1": 6.3
+    },
+    "cubicHandleQuantiles": {
+      "0": 0.1,
+      "0.25": 0.5,
+      "0.5": 0.64,
+      "0.75": 0.922,
+      "1": 2.915
+    },
+    "cubicChordDeviationQuantiles": {
+      "0": 0.0,
+      "0.25": 0.22,
+      "0.5": 0.302,
+      "0.75": 0.342,
+      "1": 0.898
+    },
+    "declaredTransforms": 0,
+    "whiteGroundRectangle": {
+      "x": 35.2,
+      "y": 73.0,
+      "width": 1849.5,
+      "height": 934.0
+    },
+    "renderStyle": {
+      "ground": "white rectangle via .st0",
+      "motifs": "black fill and no stroke (SVG defaults)",
+      "order": "ground rectangle, regular motifs, eight clipped corner paths"
+    },
+    "centralEmptyRegion": {
+      "box": [
+        45,
+        83,
+        1875,
+        997
+      ],
+      "sampledPointCount": 0
+    },
+    "canonicalMotif": {
+      "sourcePathIndex": 133,
+      "center": [
+        47.7995,
+        72.9685
+      ],
+      "bounds": [
+        44.362,
+        63.95,
+        51.237,
+        81.987
+      ],
+      "segments": [
+        {
+          "type": "C",
+          "points": [
+            [
+              0.901,
+              6.331
+            ],
+            [
+              0.001,
+              6.731
+            ],
+            [
+              1.7,
+              7.631
+            ],
+            [
+              0.901,
+              8.631
+            ]
+          ]
+        },
+        {
+          "type": "C",
+          "points": [
+            [
+              0.901,
+              8.631
+            ],
+            [
+              0.501,
+              9.131
+            ],
+            [
+              -0.2,
+              9.131
+            ],
+            [
+              -0.599,
+              8.731
+            ]
+          ]
+        },
+        {
+          "type": "C",
+          "points": [
+            [
+              -0.599,
+              8.731
+            ],
+            [
+              -1.099,
+              8.331
+            ],
+            [
+              -1.2,
+              7.631
+            ],
+            [
+              -0.7,
+              7.131
+            ]
+          ]
+        },
+        {
+          "type": "C",
+          "points": [
+            [
+              -0.7,
+              7.131
+            ],
+            [
+              -0.599,
+              7.031
+            ],
+            [
+              -0.599,
+              6.631
+            ],
+            [
+              -0.7,
+              6.431
+            ]
+          ]
+        },
+        {
+          "type": "C",
+          "points": [
+            [
+              -0.7,
+              6.431
+            ],
+            [
+              -1.3,
+              5.731
+            ],
+            [
+              -1.9,
+              7.331
+            ],
+            [
+              -2.999,
+              6.531
+            ]
+          ]
+        },
+        {
+          "type": "C",
+          "points": [
+            [
+              -2.999,
+              6.531
+            ],
+            [
+              -3.399,
+              6.231
+            ],
+            [
+              -3.499,
+              5.531
+            ],
+            [
+              -3.2,
+              5.031
+            ]
+          ]
+        },
+        {
+          "type": "C",
+          "points": [
+            [
+              -3.2,
+              5.031
+            ],
+            [
+              -2.8,
+              4.531
+            ],
+            [
+              -2.2,
+              4.431
+            ],
+            [
+              -1.599,
+              4.831
+            ]
+          ]
+        },
+        {
+          "type": "C",
+          "points": [
+            [
+              -1.599,
+              4.831
+            ],
+            [
+              -1.399,
+              5.031
+            ],
+            [
+              -0.999,
+              5.131
+            ],
+            [
+              -0.8,
+              4.931
+            ]
+          ]
+        },
+        {
+          "type": "C",
+          "points": [
+            [
+              -0.8,
+              4.931
+            ],
+            [
+              -0.099,
+              4.431
+            ],
+            [
+              -1.099,
+              4.031
+            ],
+            [
+              -1.099,
+              2.831
+            ]
+          ]
+        },
+        {
+          "type": "L",
+          "points": [
+            [
+              -1.099,
+              2.831
+            ],
+            [
+              -1.099,
+              -3.969
+            ]
+          ]
+        },
+        {
+          "type": "L",
+          "points": [
+            [
+              -1.099,
+              -3.969
+            ],
+            [
+              -0.8,
+              -4.769
+            ]
+          ]
+        },
+        {
+          "type": "C",
+          "points": [
+            [
+              -0.8,
+              -4.769
+            ],
+            [
+              -0.8,
+              -4.869
+            ],
+            [
+              -0.9,
+              -5.069
+            ],
+            [
+              -1.0,
+              -5.069
+            ]
+          ]
+        },
+        {
+          "type": "C",
+          "points": [
+            [
+              -1.0,
+              -5.069
+            ],
+            [
+              -1.5,
+              -5.169
+            ],
+            [
+              -2.3,
+              -4.069
+            ],
+            [
+              -3.1,
+              -4.869
+            ]
+          ]
+        },
+        {
+          "type": "C",
+          "points": [
+            [
+              -3.1,
+              -4.869
+            ],
+            [
+              -3.5,
+              -5.269
+            ],
+            [
+              -3.6,
+              -5.869
+            ],
+            [
+              -3.1,
+              -6.369
+            ]
+          ]
+        },
+        {
+          "type": "C",
+          "points": [
+            [
+              -3.1,
+              -6.369
+            ],
+            [
+              -2.1,
+              -7.369
+            ],
+            [
+              -1.4,
+              -5.969
+            ],
+            [
+              -0.8,
+              -6.369
+            ]
+          ]
+        },
+        {
+          "type": "C",
+          "points": [
+            [
+              -0.8,
+              -6.369
+            ],
+            [
+              -0.2,
+              -6.869
+            ],
+            [
+              -1.7,
+              -7.669
+            ],
+            [
+              -0.8,
+              -8.669
+            ]
+          ]
+        },
+        {
+          "type": "C",
+          "points": [
+            [
+              -0.8,
+              -8.669
+            ],
+            [
+              -0.4,
+              -9.069
+            ],
+            [
+              0.2,
+              -9.169
+            ],
+            [
+              0.7,
+              -8.769
+            ]
+          ]
+        },
+        {
+          "type": "C",
+          "points": [
+            [
+              0.7,
+              -8.769
+            ],
+            [
+              1.1,
+              -8.469
+            ],
+            [
+              1.3,
+              -7.769
+            ],
+            [
+              0.8,
+              -7.269
+            ]
+          ]
+        },
+        {
+          "type": "C",
+          "points": [
+            [
+              0.8,
+              -7.269
+            ],
+            [
+              0.6,
+              -7.069
+            ],
+            [
+              0.5,
+              -6.669
+            ],
+            [
+              0.7,
+              -6.469
+            ]
+          ]
+        },
+        {
+          "type": "C",
+          "points": [
+            [
+              0.7,
+              -6.469
+            ],
+            [
+              1.2,
+              -5.869
+            ],
+            [
+              2.1,
+              -7.569
+            ],
+            [
+              3.1,
+              -6.469
+            ]
+          ]
+        },
+        {
+          "type": "C",
+          "points": [
+            [
+              3.1,
+              -6.469
+            ],
+            [
+              3.5,
+              -6.069
+            ],
+            [
+              3.5,
+              -5.469
+            ],
+            [
+              3.0,
+              -4.969
+            ]
+          ]
+        },
+        {
+          "type": "C",
+          "points": [
+            [
+              3.0,
+              -4.969
+            ],
+            [
+              2.0,
+              -3.969
+            ],
+            [
+              1.0,
+              -5.869
+            ],
+            [
+              0.7,
+              -4.769
+            ]
+          ]
+        },
+        {
+          "type": "C",
+          "points": [
+            [
+              0.7,
+              -4.769
+            ],
+            [
+              1.0,
+              -4.469
+            ],
+            [
+              1.2,
+              -4.069
+            ],
+            [
+              1.2,
+              -3.669
+            ]
+          ]
+        },
+        {
+          "type": "L",
+          "points": [
+            [
+              1.2,
+              -3.669
+            ],
+            [
+              1.1,
+              3.031
+            ]
+          ]
+        },
+        {
+          "type": "C",
+          "points": [
+            [
+              1.1,
+              3.031
+            ],
+            [
+              1.1,
+              4.031
+            ],
+            [
+              0.3,
+              4.331
+            ],
+            [
+              0.8,
+              4.831
+            ]
+          ]
+        },
+        {
+          "type": "C",
+          "points": [
+            [
+              0.8,
+              4.831
+            ],
+            [
+              1.4,
+              5.331
+            ],
+            [
+              2.1,
+              3.931
+            ],
+            [
+              3.0,
+              4.731
+            ]
+          ]
+        },
+        {
+          "type": "C",
+          "points": [
+            [
+              3.0,
+              4.731
+            ],
+            [
+              3.5,
+              5.132
+            ],
+            [
+              3.6,
+              5.831
+            ],
+            [
+              3.2,
+              6.231
+            ]
+          ]
+        },
+        {
+          "type": "C",
+          "points": [
+            [
+              3.2,
+              6.231
+            ],
+            [
+              2.8,
+              6.731
+            ],
+            [
+              2.1,
+              6.831
+            ],
+            [
+              1.6,
+              6.331
+            ]
+          ]
+        },
+        {
+          "type": "C",
+          "points": [
+            [
+              1.6,
+              6.331
+            ],
+            [
+              1.401,
+              6.331
+            ],
+            [
+              1.0,
+              6.331
+            ],
+            [
+              0.901,
+              6.331
+            ]
+          ]
+        }
+      ]
+    }
+  },
+  "inferredRules": {
+    "status": "Hypotheses from one Illustrator export, not a proven authoring sequence",
+    "motif": "One 29-span rosette-ended bar is repeated by translation and quarter-turns; near-equal control shapes differ mainly through export rounding",
+    "layout": "Four tightly pitched runs form a linked rail around a large blank field; group count does not equal distinct motif count",
+    "corners": "Eight triangular clipped copies, two per corner, resolve the diagonal meeting of perpendicular bars",
+    "variation": "Small correlated changes to pitch and bead width can preserve the linked rhythm without distributing motifs independently"
+  }
+}
