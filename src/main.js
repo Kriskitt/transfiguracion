@@ -139,7 +139,7 @@ function freezeCameraFrame() {
     const first = sequence[0];
     renderLive({ ...first, localTime: 0, progress: 0 });
   }
-  composition.getCells({ id: 4, occurrence: 'final', duration: 4000 }, 0);
+  composition.getCells(sequence.at(-1), 0);
   const size = renderer.resize();
   frozenVideoSize = { width: video.videoWidth, height: video.videoHeight };
   composition.updateFrame(frozenVideoSize.width, frozenVideoSize.height, size.width, size.height);

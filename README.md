@@ -1,4 +1,4 @@
-# Transfiguración V2.1
+# Transfiguración V2.2
 
 Obra web interactiva de cámara, pregunta, archivo tipográfico y videoarte. La captura, los efectos y las respuestas de la visita permanecen en el navegador; no hay backend, grabación ni envío de imágenes o textos.
 
@@ -17,7 +17,7 @@ Abre la URL de Vite y pulsa **Permitir cámara**. En un servidor distinto de loc
 ## Recorrido
 
 1. **Permiso:** solicita solo video. Si se deniega, falta una cámara o el navegador no soporta captura/WebGL2, muestra una explicación y una acción de reintento.
-2. **CameraCapture:** 24 segundos desde el primer fotograma válido. Fase 1 horizontal; grupos A y B con fases 1, 2 o 3, y grupo C con fases 2 o 3; tratamiento final blanco negativo sobre la última composición. **Saltar** procesa el fotograma disponible y abre Quest. **Guardar** descarga un PNG del canvas sin controles. La pista se libera al entrar en la fase final.
+2. **CameraCapture:** 24 segundos desde el primer fotograma válido: fase 1 de 0–2 s; fases 2 y 3 aleatorias de 2–18 s, con intervalos de 0,5–1,5 s; collage obligatorio de 18–22 s; tratamiento blanco negativo de 22–24 s sobre esa composición. **Saltar** procesa el fotograma disponible y abre Quest. **Guardar** descarga un PNG del canvas sin controles. La pista se libera al entrar en la fase final.
 3. **Quest:** pregunta «¿Qué existe en el futuro que imaginas?», respuesta opcional de hasta 333 caracteres. **Enviar** añade la respuesta no vacía al archivo de esta visita; **Archivo** entra sin enviarla; **Volver** y el logo reinician el flujo de cámara.
 4. **Replies:** nueve textos de ejemplo más las respuestas de la visita. Escritorio: rueda/trackpad para Z y arrastre para X/Y, sin filtrado de planos distantes. Móvil: composición tipográfica desplazable verticalmente sin navegación Z.
 5. **About:** modal sobre Quest o Replies; cierre con botón o Escape. **Ver videoarte** abre el WebM local. La página de video usa línea de tiempo con búsqueda, pausa/reproducción y cierre siempre hacia Quest.

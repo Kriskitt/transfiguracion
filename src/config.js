@@ -11,13 +11,16 @@ export const FINAL_EXPOSURE = 0.92;
 
 export const TIMING = {
   totalDuration: 24000,
-  firstDuration: 3000,
-  middleDuration: 17000,
-  finalDuration: 4000,
+  firstDuration: 2000,
+  middleDuration: 16000,
+  randomDurationRange: [500, 1500],
+  randomCountRange: [16, 24],
+  collageDuration: 4000,
+  finalDuration: 2000,
 };
 
 export const VISUAL = {
-  stage2EventIntervalMs: 5000 / (3 * 1.4),
+  stage2EventsPerOccurrence: 4,
   referenceBlurPx: 140,
   maxBlurMultiplier: 1.15,
   stage1BlurRange: [0.82, 1.15],

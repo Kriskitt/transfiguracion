@@ -49,11 +49,12 @@ export class CompositionController {
 
   getCells(stage, localTime) {
     if (stage.id !== this.stageId || stage.occurrence !== this.occurrence) {
+      const continueCollage = stage.id === 3 && stage.group === 'final-collage' && this.stageId === 3;
       this.stageId = stage.id;
       this.occurrence = stage.occurrence;
       this.mutationIndex = 0;
       if (stage.id === 2) this.stage2Level = 0;
-      this.buildStage(stage.id);
+      if (!continueCollage) this.buildStage(stage.id);
     }
 
     this.applyDueMutations(stage.id, localTime, stage.duration);
@@ -78,8 +79,8 @@ export class CompositionController {
   getSchedule(stageId, duration = 3000) {
     if (stageId === 1) return [0.25, 0.5, 0.75].map(f => f * duration);
     if (stageId === 2) return Array.from(
-      { length: Math.floor((duration - 1) / VISUAL.stage2EventIntervalMs) },
-      (_, index) => (index + 1) * VISUAL.stage2EventIntervalMs,
+      { length: VISUAL.stage2EventsPerOccurrence },
+      (_, index) => (index + 1) * duration / (VISUAL.stage2EventsPerOccurrence + 1),
     );
     if (stageId === 3) return [0.25, 0.5, 0.75].map(f => f * duration);
     return [];
@@ -102,7 +103,7 @@ export class CompositionController {
     if (stageId === 3) {
       this.cells = this.cells.map((cell, index) => {
         if (index === 0) return cell;
-        if (!this.random.chance(VISUAL.collageMutationChance)) return cell;
+        if (index !== 1 && !this.random.chance(VISUAL.collageMutationChance)) return cell;
         const dest = {
           ...cell.dest,
           x: cell.dest.x + this.random.range(-0.035, 0.035) * this.output.width,

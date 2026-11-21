@@ -1,6 +1,6 @@
-# Estado actual: Transfiguración V2.1
+# Estado actual: Transfiguración V2.2
 
-Actualizado: 21 de noviembre de 2026. La aplicación integra pantalla de permiso, CameraCapture de 24 s con grupos A/B/C y preservación de la última composición, Quest, Replies desktop XYZ y móvil vertical, About y Video. Véanse [README.md](README.md) e [IMPLEMENTACION_V2_CODEX.md](IMPLEMENTACION_V2_CODEX.md) para ejecución, arquitectura, pruebas y límites. El texto siguiente documenta la entrega V1.
+Actualizado: 21 de noviembre de 2026. La aplicación integra pantalla de permiso, CameraCapture de 24 s con fases 2/3 breves entre 2–18 s, collage continuo de 18–22 s y tratamiento final de 22–24 s, Quest, Replies desktop XYZ y móvil vertical, About y Video. Véanse [README.md](README.md) e [IMPLEMENTACION_V2_CODEX.md](IMPLEMENTACION_V2_CODEX.md) para ejecución, arquitectura, pruebas y límites. El texto siguiente documenta la entrega V1.
 
 ---
 

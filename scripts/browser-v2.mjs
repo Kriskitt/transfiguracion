@@ -41,6 +41,10 @@ async function setViewport(width,height) {
   await cdp('Emulation.setDeviceMetricsOverride',{width,height,deviceScaleFactor:1,mobile:width<701});
   await new Promise(resolve=>setTimeout(resolve,350));
 }
+async function waitElapsed(startedAt, targetMs) {
+  const elapsed = await evalJS('performance.now()') - startedAt;
+  await new Promise(resolve => setTimeout(resolve, Math.max(0, targetMs - elapsed)));
+}
 try {
   await cdp('Runtime.enable'); await cdp('Page.enable');
   await setViewport(1920,1080);
@@ -53,6 +57,7 @@ try {
   await setViewport(1920,1080);
   await evalJS("document.querySelector('#cameraAction').click()");
   await waitFor("!document.querySelector('#cameraControls').hidden");
+  const cameraStartedAt = await evalJS('performance.now()');
   await new Promise(resolve=>setTimeout(resolve,1500));
   await shot('desktop-camera');
   await mkdir('qa/v2/downloads',{recursive:true});
@@ -62,7 +67,16 @@ try {
   await waitFor("document.querySelector('#cameraControls').hidden === false");
   await new Promise(resolve=>setTimeout(resolve,350));
   assert.ok((await readdir('qa/v2/downloads')).filter(name => name.endsWith('.png')).length > previousDownloads);
+  await waitElapsed(cameraStartedAt, 5500);
+  await shot('desktop-camera-random-v22');
+  await waitElapsed(cameraStartedAt, 19000);
+  await shot('desktop-camera-collage-v22');
+  await waitElapsed(cameraStartedAt, 22400);
+  await shot('desktop-camera-negative-v22');
+  assert.equal(await evalJS("document.querySelector('#camera').srcObject"), null);
   await waitFor("!document.querySelector('#postShell').hidden",32000);
+  const elapsedToQuest = await evalJS('performance.now()') - cameraStartedAt;
+  assert.ok(elapsedToQuest >= 23700 && elapsedToQuest < 26000, `Camera duration ${elapsedToQuest} ms`);
   assert.equal(await evalJS("document.querySelector('#camera').srcObject"),null);
   assert.ok(await evalJS("document.querySelector('#capturedBackground').style.backgroundImage.length > 100"));
   await shot('desktop-quest');
@@ -131,5 +145,5 @@ try {
   await shot('desktop-permission-denied');
   await cdp('Page.removeScriptToEvaluateOnNewDocument',{identifier:deniedScript.identifier});
   assert.deepEqual(errors,[]);
-  console.log('Browser V2 flow passed; screenshots in qa/v2');
+  console.log(`Browser V2.2 flow passed in ${Math.round(elapsedToQuest)} ms; screenshots in qa/v2`);
 } finally {socket.close();}
