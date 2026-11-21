@@ -1,4 +1,4 @@
-import videoUrl from '../../rsc_/video/Transfiguración_video.webm?url';
+import videoUrl from '../../rsc_/video/Transfiguración_video.webm?url';
 import { playbackDuration, playbackProgress } from './video-time.js';
 
 export class VideoView {
