@@ -1,5 +1,4 @@
-import { archiveEntries } from "../data/archive.js";
-import { ARCHIVE_MAX_DEPTH, clampDepth, clampPan, isArchivePanelVisible } from "../archive-math.js";
+import { ARCHIVE_MAX_DEPTH, clampDepth, clampPan } from "../archive-math.js";
 import { createExperimentalParagraph } from "../effects/typography.js";
 
 const SPOTS = [
@@ -9,10 +8,13 @@ const SPOTS = [
 ];
 
 export class ArchiveView {
-  constructor(root, random) {
+  constructor(root, random, entries) {
     this.root = root;
     this.viewport = root.querySelector("#archiveViewport");
     this.random = random;
+    this.entries = entries;
+    this.mobile = false;
+    this.mobileList = root.querySelector('#mobileReplies');
     this.screen = root.querySelector("#archiveScreen");
     this.world = root.querySelector("#archiveWorld");
     this.counter = root.querySelector("#archiveCounter");
@@ -41,9 +43,29 @@ export class ArchiveView {
   async mount() {
     await Promise.all(["HaasLight", "HaasRoman", "HaasMedium"].map((font) => document.fonts.load(`64px ${font}`)));
     if (this.disposed) return;
+    this.mobile = matchMedia('(max-width: 700px)').matches;
+    if (this.mobile) {
+      this.viewport.hidden = true;
+      this.mobileList.hidden = false;
+      this.mobileList.replaceChildren(...this.entries.map((entry, index) => {
+        const panel = document.createElement('div');
+        panel.className = 'mobile-reply';
+        panel.style.fontSize = this.random.chance(.5) ? '17px' : '23px';
+        panel.style.marginLeft = `${this.random.range(3, 24)}%`;
+        panel.style.width = `${this.random.range(70, 96)}%`;
+        panel.style.marginTop = index ? `${this.random.range(-12, 28)}px` : '0';
+        panel.textContent = entry.text;
+        return panel;
+      }));
+      this.root.querySelector('.archive-hud').hidden = true;
+      return;
+    }
+    this.viewport.hidden = false;
+    this.mobileList.hidden = true;
+    this.root.querySelector('.archive-hud').hidden = false;
     this.world.replaceChildren();
-    this.panels = archiveEntries.map((entry, index) => {
-      const [spotX, spotY, spotZ] = SPOTS[index];
+    this.panels = this.entries.map((entry, index) => {
+      const [spotX, spotY, spotZ] = SPOTS[index] ?? [this.random.range(-500, 500), this.random.range(-300, 300), -300 - index * 560];
       const width = this.random.range(640, 990);
       const fontSize = this.random.range(43, 68);
       const panel = document.createElement("div");
@@ -131,8 +153,8 @@ export class ArchiveView {
     for (const panel of this.panels) {
       const z = panel.z + this.cameraZ;
       panel.element.style.transform = `translate3d(${panel.x}px, ${panel.y}px, ${z}px) translate(-50%, -50%)`;
-      panel.element.style.visibility = isArchivePanelVisible(z) ? "visible" : "hidden";
-      panel.element.style.opacity = z > 800 ? String(Math.max(0, (1040 - z) / 240)) : "1";
+      panel.element.style.visibility = 'visible';
+      panel.element.style.opacity = '1';
     }
     const index = Math.min(this.panels.length, Math.floor(this.cameraZ / ARCHIVE_MAX_DEPTH * this.panels.length) + 1);
     this.counter.textContent = `${index}/${this.panels.length}`;

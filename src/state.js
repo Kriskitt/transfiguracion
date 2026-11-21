@@ -4,8 +4,9 @@ const NEXT = {
   camera_running: new Set(["camera_finalizing", "camera_error", "camera_idle"]),
   camera_finalizing: new Set(["question", "camera_idle"]),
   camera_error: new Set(["camera_permission", "camera_idle"]),
-  question: new Set(["archive", "camera_idle"]),
-  archive: new Set(["camera_idle"]),
+  question: new Set(["archive", "camera_idle", "video"]),
+  archive: new Set(["camera_idle", "video"]),
+  video: new Set(["question", "camera_idle"]),
 };
 
 export class AppState {

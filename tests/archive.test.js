@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { clampDepth, clampPan, isArchivePanelVisible } from "../src/archive-math.js";
+import { clampDepth, clampPan } from "../src/archive-math.js";
 import { archiveEntries } from "../src/data/archive.js";
 
 test("depth stays within nine planes and pan keeps part of the active panel visible", () => {
@@ -20,8 +20,7 @@ test("archive has nine distinct replaceable text entries", () => {
   assert.ok(archiveEntries.every((entry) => entry.text.length > 100));
 });
 
-test("distant archive panels leave the reading field instead of overlapping it", () => {
-  assert.equal(isArchivePanelVisible(-1800), false);
-  assert.equal(isArchivePanelVisible(-250), true);
-  assert.equal(isArchivePanelVisible(1100), false);
+test("depth navigation spans the full archive without a narrow active band", () => {
+  assert.equal(clampDepth(1800), 1800);
+  assert.equal(clampDepth(6300), 6300);
 });

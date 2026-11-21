@@ -1,0 +1,59 @@
+.mb-cinematic-video {
+  aspect-ratio: 1.8 / 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.mb-cinematic-video .elementor-wrapper,
+.mb-cinematic-video .elementor-video,
+.mb-cinematic-video video,
+.mb-cinematic-video iframe {
+  width: 100%;
+  height: 100%;
+}
+
+.mb-cinematic-video video {
+  position: absolute;
+  inset: 0;
+
+  object-fit: cover;
+  object-position: center center;
+
+  display: block;
+}
+
+/* line */
+.mb-cinematic-video::after {
+  content: "";
+  position: absolute;
+  left: 3%;
+  right: 3%;
+  bottom: 24px;
+  height: 1px;
+  background: rgba(255,255,255,0.75);
+  z-index: 5;
+}
+
+/* timeline */
+.mb-cinematic-video::before {
+  content: "";
+  position: absolute;
+  left: 3%;
+  bottom: 23px;
+  width: var(--video-progress, 25%);
+  height: 3px;
+  background: #fff;
+  z-index: 6;
+}
+
+
+@media (max-width: 1024px) {
+  .mb-cinematic-video {
+    aspect-ratio: 1.9 / 1;
+  }
+}
+
+@media (max-width: 767px) {
+  .mb-cinematic-video {
+    aspect-ratio: 3.5 / 4; 
+}

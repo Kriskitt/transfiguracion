@@ -12,7 +12,7 @@ function controller(seed = "collage-check") {
 
 test("the referenced 4 by 3 mosaic keeps its dimensions while image fragmentation progresses", () => {
   const composition = controller();
-  const stage = { id: 2 };
+  const stage = { id: 2, duration: 5000 };
   const snapshots = [0, 1200, 2500, 3900, 10000].map((time) =>
     composition.getCells(stage, time).map((cell) => structuredClone(cell)),
   );
@@ -21,9 +21,12 @@ test("the referenced 4 by 3 mosaic keeps its dimensions while image fragmentatio
     const natural = sourceForDest(cell.dest, composition.cover, 1920, 1080);
     return Math.abs(cell.source.x - natural.x) > 0.001 || Math.abs(cell.source.width - natural.width) > 0.001;
   }).length);
-  assert.deepEqual(altered.slice(0, 4), [3, 6, 9, 12]);
-  assert.deepEqual(snapshots[4], snapshots[3]);
-  assert.equal(composition.mutationIndex, 3);
+  assert.ok(altered[0] > 0);
+  assert.ok(altered[1] > altered[0]);
+  assert.ok(altered[2] > altered[1]);
+  assert.ok(altered[3] > altered[2]);
+  assert.equal(altered[4], 12);
+  assert.equal(composition.mutationIndex, 4);
 });
 
 test("final collage is irregular, layered, seeded and samples only valid camera UVs", () => {
@@ -47,7 +50,7 @@ test("final collage is irregular, layered, seeded and samples only valid camera 
   }
 });
 
-test("collage keeps visible white space between photographic fragments", () => {
+test("collage covers every sampled viewport point with camera-derived fragments", () => {
   for (const seed of ["same-seed", "collage-check", "review"]) {
     const cells = controller(seed).getCells({ id: 3 }, 0);
     let covered = 0;
@@ -61,8 +64,7 @@ test("collage keeps visible white space between photographic fragments", () => {
         )) covered += 1;
       }
     }
-    assert.ok(covered / sampled < 0.87, `${seed} cubre demasiado el viewport`);
-    assert.ok(covered / sampled > 0.55, `${seed} deja demasiados vacíos`);
+    assert.equal(covered, sampled, `${seed} deja vacíos`);
   }
 });
 

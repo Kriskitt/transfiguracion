@@ -4,10 +4,6 @@ export function clampDepth(value) {
   return Math.min(ARCHIVE_MAX_DEPTH, Math.max(0, value));
 }
 
-export function isArchivePanelVisible(z) {
-  return z >= -1500 && z <= 1050;
-}
-
 export function clampPan(value, panel, viewportSize, perspective, maxPan) {
   const scale = perspective / Math.max(1, perspective - panel.z);
   const margin = 100;

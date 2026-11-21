@@ -1,4 +1,4 @@
-# Despliegue de Transfiguración en GitHub Pages
+# Despliegue de Transfiguración V2.1 en GitHub Pages
 
 ## Sitio y ramas
 
@@ -17,19 +17,17 @@ npm run build
 npm run preview
 ```
 
-El `base` de Vite es `/transfiguracion/`. Para una vista previa local, abre `http://localhost:4173/transfiguracion/` (o el puerto que indique Vite). Los módulos, SVG y WOFF2 se resuelven bajo ese prefijo. La navegación de Cámara, Pregunta, Archivo y About ocurre en una sola página, sin rutas profundas del navegador.
+El `base` de Vite es `/transfiguracion/`. Para una vista previa local, abre `http://localhost:4173/transfiguracion/` (o el puerto que indique Vite). Los módulos, SVG, WOFF2 y WebM se resuelven bajo ese prefijo. La navegación de Permiso, CameraCapture, Quest, Replies, About y Video ocurre en una sola página, sin rutas profundas del navegador.
 
-La experiencia pública presenta «Permitir cámara» al entrar, antes de llamar a `getUserMedia`. El video y la respuesta del formulario permanecen en el navegador; «enviar» es una confirmación simulada. Al acabar la secuencia, la pista se libera. Una nueva ejecución vuelve a solicitarla si es necesario. GitHub Pages proporciona HTTPS, requisito habitual para permisos de cámara fuera de localhost.
+La experiencia pública presenta «Permitir cámara» al entrar, antes de llamar a `getUserMedia`. Los fotogramas y las respuestas permanecen en el navegador; las respuestas nuevas viven solo en memoria durante la visita. Al acabar la secuencia, la pista se libera. Una nueva ejecución vuelve a solicitarla si es necesario. GitHub Pages proporciona HTTPS, requisito habitual para permisos de cámara fuera de localhost.
 
 ## Comprobaciones realizadas
 
-- `npm ci`, las 15 pruebas de `npm test`, `npm run build` y `npm audit --audit-level=high` finalizaron correctamente en la rama de despliegue.
-- El workflow construyó y publicó el artefacto. La URL HTTPS devolvió HTTP 200 y se comprobó la ruta base `/transfiguracion/`.
-- En Chrome desktop con cámara **sintética**, la URL publicada pasó el recorrido de consentimiento, renderizado WebGL2, cierre de pista al llegar a Pregunta, carga de fuentes, Archivo y About, sin errores de consola ni respuestas HTTP 4xx observadas. Se capturó una imagen local de QA no versionada para comparar el layout.
+- Las comprobaciones de la versión inicial constan en el historial de esta rama. Las verificaciones específicas de V2.1 se informan en el reporte de publicación y en `IMPLEMENTACION_V2_CODEX.md`.
 
 ## Tipografía y derechos
 
-Las fuentes Neue Haas originales tienen licencia comercial y no se incluyen en Git ni en el artefacto público. El CSS usa esas fuentes si están instaladas en el equipo del visitante y, en otros equipos, carga los pesos 300, 400 y 500 de Archivo desde `@fontsource/archivo`. Archivo está bajo SIL Open Font License 1.1; su texto de licencia se copia a `public/LICENSE-Archivo.txt`. Esta sustitución puede alterar ligeramente el ancho y la forma de algunas letras respecto del entorno local original. `refs_/`, `qa/`, `node_modules/`, `dist/` y datos privados tampoco se publican.
+Las fuentes Neue Haas originales tienen licencia comercial y no se incluyen en Git ni en el artefacto público. El CSS usa esas fuentes si están instaladas en el equipo del visitante y, en otros equipos, carga los pesos 300, 400 y 500 de Archivo desde `@fontsource/archivo`. Archivo está bajo SIL Open Font License 1.1; su texto de licencia se copia a `public/LICENSE-Archivo.txt`. Esta sustitución puede alterar ligeramente el ancho y la forma de algunas letras respecto del entorno local original. `refs_/`, `qa/`, `node_modules/`, `dist/` y datos privados tampoco se publican. El WebM local de la obra sí forma parte del artefacto público.
 
 ## Actualizar o revertir
 
