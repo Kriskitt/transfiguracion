@@ -3,7 +3,7 @@ import abstractLogoUrl from '../rsc_/trans_abstractlogo.svg?url';
 import { CameraController } from './camera.js';
 import { FINAL_EXPOSURE, RESPONSE_MAX_LENGTH } from './config.js';
 import { CompositionController } from './composition.js';
-import { renderGenerativeLayers, renderOrnament } from './effects/generative.js';
+import { renderGenerativeLayers, renderOrnament, stopOutlineMotion } from './effects/generative.js';
 import { createRandom, createRunSeed, createSeedFromQuery } from './random.js';
 import { WebGLRenderer } from './renderer.js';
 import { AppState } from './state.js';
@@ -52,7 +52,7 @@ let resizeTimer = 0;
 const mainLogo = $('#mainLogo');
 mainLogo.innerHTML = `<img src="${abstractLogoUrl}" alt="" />`;
 new ResizeObserver(([entry]) => {
-  if (entry.contentRect.height) $('.global-nav').style.height = `${entry.contentRect.height}px`;
+  if (entry.contentRect.height) $('.global-nav').style.height = `${entry.contentRect.height * 1.2}px`;
 }).observe(mainLogo);
 
 function stopLoop() {
@@ -68,6 +68,7 @@ function disposeArchive() {
 
 function resetPostInterface() {
   questionTitles.stop();
+  stopOutlineMotion();
   if (state.aboutOpen) closeAbout();
   disposeArchive();
   postShell.hidden = true;
@@ -249,6 +250,7 @@ function closeAbout() {
 function openVideo() {
   if (!['question', 'archive'].includes(state.current)) return;
   questionTitles.stop();
+  stopOutlineMotion();
   if (state.aboutOpen) closeAbout();
   disposeArchive();
   state.transition('video');
@@ -331,6 +333,7 @@ window.addEventListener('resize', () => {
 });
 function shutdown() {
   questionTitles.stop();
+  stopOutlineMotion();
   ++runToken;
   stopLoop();
   archive?.dispose();
