@@ -1,7 +1,7 @@
 import './styles.css';
 import abstractLogoUrl from '../rsc_/trans_abstractlogo.svg?url';
 import { CameraController } from './camera.js';
-import { FINAL_EXPOSURE, QUESTION_TEXT, RESPONSE_MAX_LENGTH } from './config.js';
+import { FINAL_EXPOSURE, RESPONSE_MAX_LENGTH } from './config.js';
 import { CompositionController } from './composition.js';
 import { renderGenerativeLayers, renderOrnament } from './effects/generative.js';
 import { createRandom, createRunSeed, createSeedFromQuery } from './random.js';
@@ -11,10 +11,11 @@ import { buildCameraSequence, getStageAt, Timeline } from './timeline.js';
 import { InterfaceController } from './ui.js';
 import { AboutView } from './views/about.js';
 import { ArchiveView } from './views/archive.js';
+import { installQuestionDrag } from './views/question-drag.js';
+import { QuestionTitles } from './views/question-titles.js';
 import { VideoView } from './views/video.js';
 import { ReplyRepository } from './data/replies.js';
 import { renderFinalFrame } from './final-frame.js';
-import { createExperimentalParagraph } from './effects/typography.js';
 
 const $ = selector => document.querySelector(selector);
 const canvas = $('#output');
@@ -22,6 +23,9 @@ const video = $('#camera');
 const sceneShell = $('#sceneShell');
 const postShell = $('#postShell');
 const questionView = $('#questionView');
+const questionHeading = $('#questionHeading span');
+const questionTitles = new QuestionTitles(questionHeading);
+const questionDrag = installQuestionDrag($('#questionForm'));
 const archiveRoot = $('#archiveView');
 const controls = $('#cameraControls');
 const answer = $('#answer');
@@ -45,7 +49,11 @@ let submissionNumber = 0;
 let savedBackground = '';
 let resizeTimer = 0;
 
-$('#mainLogo').innerHTML = `<img src="${abstractLogoUrl}" alt="" />`;
+const mainLogo = $('#mainLogo');
+mainLogo.innerHTML = `<img src="${abstractLogoUrl}" alt="" />`;
+new ResizeObserver(([entry]) => {
+  if (entry.contentRect.height) $('.global-nav').style.height = `${entry.contentRect.height}px`;
+}).observe(mainLogo);
 
 function stopLoop() {
   if (animationFrame) cancelAnimationFrame(animationFrame);
@@ -59,6 +67,7 @@ function disposeArchive() {
 }
 
 function resetPostInterface() {
+  questionTitles.stop();
   if (state.aboutOpen) closeAbout();
   disposeArchive();
   postShell.hidden = true;
@@ -181,16 +190,6 @@ function updateGenerative() {
   renderGenerativeLayers($('#generativeLayers'), runSeed, window.innerWidth, window.innerHeight);
 }
 
-function updateQuestionTypography() {
-  const heading = $('#questionHeading');
-  const size = parseFloat(getComputedStyle(heading).fontSize);
-  const words = createExperimentalParagraph(QUESTION_TEXT, Math.max(1, heading.clientWidth - 12), size,
-    createRandom(`${runSeed}:question`));
-  words.setAttribute('aria-hidden', 'true');
-  heading.setAttribute('aria-label', QUESTION_TEXT);
-  heading.replaceChildren(words);
-}
-
 function preserveFinalBackground() {
   if (!savedBackground) savedBackground = canvas.toDataURL('image/png');
   $('#capturedBackground').style.backgroundImage = `url("${savedBackground}")`;
@@ -212,11 +211,13 @@ function enterQuestion() {
   $('#archiveButton').removeAttribute('aria-current');
   postShell.classList.remove('is-archive');
   updateGenerative();
-  updateQuestionTypography();
+  questionDrag.reset();
+  questionTitles.start();
 }
 
 function enterArchive() {
   if (state.current === 'archive' || state.current !== 'question' || state.aboutOpen) return;
+  questionTitles.stop();
   state.transition('archive');
   questionView.hidden = true;
   archiveRoot.hidden = false;
@@ -246,8 +247,9 @@ function closeAbout() {
 }
 
 function openVideo() {
-  if (!state.aboutOpen) return;
-  closeAbout();
+  if (!['question', 'archive'].includes(state.current)) return;
+  questionTitles.stop();
+  if (state.aboutOpen) closeAbout();
   disposeArchive();
   state.transition('video');
   postShell.hidden = true;
@@ -301,6 +303,7 @@ $('#saveButton').addEventListener('click', saveCapture);
 $('#exitButton').addEventListener('click', enterArchive);
 $('#aboutButton').addEventListener('click', openAbout);
 $('#archiveButton').addEventListener('click', enterArchive);
+$('#videoButton').addEventListener('click', openVideo);
 $('#aboutVideo').addEventListener('click', openVideo);
 $('#questionForm').addEventListener('submit', event => {
   event.preventDefault();
@@ -315,7 +318,6 @@ window.addEventListener('resize', () => {
   resizeTimer = setTimeout(() => {
     if (state.current === 'camera_finalizing') renderFinal();
     else if (state.current === 'question' || state.current === 'archive') updateGenerative();
-    if (state.current === 'question') updateQuestionTypography();
     if (state.current === 'archive' && archive && archive.mobile !== matchMedia('(max-width: 700px)').matches) {
       archive.dispose();
       archive = new ArchiveView(archiveRoot, createRandom(`${runSeed}:archive`), repository.getAll());
@@ -328,6 +330,7 @@ window.addEventListener('resize', () => {
   }, 100);
 });
 function shutdown() {
+  questionTitles.stop();
   ++runToken;
   stopLoop();
   archive?.dispose();

@@ -1,7 +1,7 @@
 import { generateFrame } from '../../experiments/04-generative-frame/frame.js?generator';
 import { generatePattern } from '../../experiments/02-geometric-noise/noise.js?generator';
 import noiseGeometry from '../../experiments/02-geometric-noise/analysis/geometry.json';
-import { generateOutline } from '../../experiments/03-generative-outline/outline.js?generator';
+import outlineArtwork from '../../experiments/outline-01.svg?raw';
 import { generateOrnament } from '../../experiments/06-generative-ornament/ornament.js?generator';
 import ornamentGeometry from '../../experiments/06-generative-ornament/analysis/geometry.json';
 import { generateLineframe } from '../../experiments/05-generative-lineframe/lineframe.js?generator';
@@ -15,6 +15,17 @@ const el = (name, attributes = {}) => {
   return node;
 };
 
+function drawNoisePattern(canvas, pattern, ratio) {
+  canvas.width = Math.round(pattern.width * ratio);
+  canvas.height = Math.round(pattern.height * ratio);
+  const ctx = canvas.getContext('2d');
+  ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+  for (const cell of pattern.cells) {
+    ctx.fillStyle = cell.color;
+    ctx.fillRect(cell.x, cell.y, pattern.moduleWidth + 1 / ratio, pattern.moduleHeight + 1 / ratio);
+  }
+}
+
 export function renderGenerativeLayers(root, seed, width, height) {
   const frame = generateFrame({ width, height, seed: `${seed}:frame` });
   const frameSvg = root.querySelector('.gen-frame');
@@ -25,27 +36,17 @@ export function renderGenerativeLayers(root, seed, width, height) {
   })), ...frame.rectangles.map(rect => el('rect', { ...rect, fill: 'none', stroke: '#222',
     'stroke-width': rect.strokeWidth, 'vector-effect': 'non-scaling-stroke' })));
 
-  const pattern = generatePattern(noiseGeometry, { width, height, seed: `${seed}:noise`, density: .55, moduleScale: 1 });
-  const canvas = root.querySelector('.gen-noise');
   const ratio = Math.min(devicePixelRatio || 1, 2);
-  canvas.width = Math.round(width * ratio);
-  canvas.height = Math.round(height * ratio);
-  const ctx = canvas.getContext('2d');
-  ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
-  for (const cell of pattern.cells) {
-    ctx.fillStyle = cell.color;
-    ctx.fillRect(cell.x, cell.y, pattern.moduleWidth + 1 / ratio, pattern.moduleHeight + 1 / ratio);
-  }
+  drawNoisePattern(root.querySelector('.gen-noise'),
+    generatePattern(noiseGeometry, { width, height, seed: `${seed}:noise`, density: .3, moduleScale: 1 }), ratio);
+  drawNoisePattern(root.querySelector('.gen-noise-dense'),
+    generatePattern(noiseGeometry, { width, height, seed: `${seed}:noise`, density: .8, moduleScale: 1 }), ratio);
 
-  const outline = generateOutline({ width, height, seed: `${seed}:outline` });
-  const outlineSvg = root.querySelector('.gen-outline');
-  outlineSvg.setAttribute('viewBox', `0 0 ${width} ${height}`);
-  const scale = outline.layout === 'portrait' ? Math.min(width / 390, height / 844) :
-    Math.min(Math.max(1, width - 16) / 1920, Math.max(1, height - 16) / 1080);
-  outlineSvg.replaceChildren(...outline.paths.flatMap(path => [
-    el('path', { d: path.d, fill: 'none', stroke: '#000', 'stroke-width': 6 * scale * outline.stroke.correction, 'stroke-linecap': 'round' }),
-    el('path', { d: path.d, fill: 'none', stroke: '#fff', 'stroke-width': 4 * scale * outline.stroke.correction, 'stroke-linecap': 'round' }),
-  ]));
+  const outlineLayer = root.querySelector('.gen-outline');
+  if (!outlineLayer.firstElementChild) {
+    outlineLayer.innerHTML = outlineArtwork;
+    outlineLayer.querySelector('svg').setAttribute('preserveAspectRatio', 'none');
+  }
 
   const lineframe = generateLineframe(lineframeGeometry, { width, height, seed: `${seed}:lineframe` });
   const lineframeSvg = root.querySelector('.gen-lineframe');

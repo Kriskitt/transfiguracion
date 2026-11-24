@@ -3,8 +3,11 @@ export const REFERENCE_SIZE = {
   height: 1080,
 };
 
-// PROVISIONAL: sustituir solo esta constante cuando el autor entregue la pregunta definitiva.
-export const QUESTION_TEXT = "¿Qué existe en el futuro que imaginas?";
+export const QUESTION_TITLES = [
+  "¿Qué existe en el futuro que imaginas?",
+  "¿Qué observas?",
+  "¿Qué escuchas?",
+];
 export const RESPONSE_MAX_LENGTH = 333;
 export const CONFIRMATION_MS = 1100;
 export const FINAL_EXPOSURE = 0.92;

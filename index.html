@@ -17,18 +17,19 @@
         </section>
         <div id="cameraControls" class="camera-controls" hidden><button id="skipButton" type="button">Saltar</button><button id="saveButton" type="button">Guardar</button></div>
         <div id="postShell" hidden>
-          <div id="generativeLayers" class="generative-layers" aria-hidden="true"><svg class="gen-frame"></svg><canvas class="gen-noise"></canvas><svg class="gen-outline"></svg><svg class="gen-lineframe"></svg></div>
+          <div id="generativeLayers" class="generative-layers" aria-hidden="true"><svg class="gen-frame"></svg><canvas class="gen-noise"></canvas><canvas class="gen-noise-dense"></canvas><div class="gen-outline"></div><svg class="gen-lineframe"></svg></div>
           <div id="edgeFrame" hidden></div>
           <button id="mainLogo" class="main-logo" type="button" aria-label="Reiniciar experiencia de cámara"></button>
           <nav class="global-nav" aria-label="Navegación principal">
             <button id="aboutButton" type="button"><span>About</span></button>
             <button id="archiveButton" type="button"><span>Archivo</span></button>
+            <button id="videoButton" type="button"><span>Video</span></button>
           </nav>
           <section id="questionView" class="question-view" aria-label="Pregunta">
             <form id="questionForm" class="question-form" novalidate>
-              <div id="questionHeading" class="question-heading">¿Qué existe en el futuro que imaginas?</div>
+              <div id="questionHeading" class="question-heading"><span>¿Qué existe en el futuro que imaginas?</span></div>
               <label class="visually-hidden" for="answer">Tu respuesta</label>
-              <textarea id="answer" name="answer" maxlength="333" placeholder="Escribe lo que pienses, veas o escuches."></textarea>
+              <div class="question-input"><textarea id="answer" name="answer" maxlength="333" placeholder="Escribe aquí"></textarea></div>
               <div class="question-footer">
                 <p id="confirmation" class="confirmation" role="status" aria-live="polite"></p>
                 <div class="question-actions">
@@ -37,6 +38,12 @@
                   <button id="backButton" type="button"><span>Volver</span></button>
                 </div>
               </div>
+              <span class="question-handle top-left" aria-hidden="true"></span>
+              <span class="question-handle middle-left" aria-hidden="true"></span>
+              <span class="question-handle bottom-left" aria-hidden="true"></span>
+              <span class="question-handle top-right" aria-hidden="true"></span>
+              <span class="question-handle middle-right" aria-hidden="true"></span>
+              <span class="question-handle bottom-right" aria-hidden="true"></span>
             </form>
           </section>
           <section id="archiveView" class="archive-view" aria-label="Archivo" hidden>
@@ -67,6 +74,13 @@
       <section id="videoView" class="video-view" hidden aria-label="Videoarte">
         <video id="artVideo" playsinline preload="metadata"></video>
         <button id="videoClose" class="video-close" type="button" aria-label="Cerrar video">×</button>
+        <div class="video-volume">
+          <div id="videoVolumeScale" class="video-volume-scale" role="slider" tabindex="0" aria-label="Volumen" aria-orientation="vertical" aria-valuemin="0" aria-valuemax="8" aria-valuenow="8">
+            <div id="videoVolumeFill" class="video-volume-fill"></div>
+            <div id="videoVolumeThumb" class="video-volume-thumb"></div>
+          </div>
+          <output id="videoVolumeValue" for="videoVolumeScale">8</output>
+        </div>
         <div id="videoTimeline" class="video-timeline" role="slider" tabindex="0" aria-label="Posición del video" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="videoProgress"></div></div>
         <button id="videoPlay" class="video-play" type="button">Reproducir</button>
       </section>
